@@ -24,23 +24,27 @@ class Level {
     }
       // Renderiza instruções.
       render(appContainer) {
-        // Primeiro, exibe as instruções
+        appContainer.innerHTML = '';
+          // Limpa e adiciona o conteúdo, incluindo o botão com um ID específico
         appContainer.innerHTML = `
-            <div class="instructions-container">
-                <img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">
-                <button class="button start-level-btn">Iniciar Level</button>
-            </div>
-        `;
+        <div class="instructions-container">
+            <img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">
+            <button id="botaostart" class="button start-level-btn">Iniciar Level</button>
+        </div>`;
 
-        // Adiciona evento ao botão para iniciar o level
-        const startBtn = appContainer.querySelector('.start-level-btn');
+    // Aguarda o navegador reconhecer as mudanças no DOM
+    setTimeout(() => {
+        // Agora, você pode obter o botão pelo ID
+        const startBtn = document.getElementById('botaostart');
         startBtn.onclick = () => {
             this.startLevel(appContainer);
         };
+    }, 0);
     }
 
 //Antigo Render
         startLevel(appContainer){
+          
             appContainer.innerHTML = this.contentHtml;
 
         const showCode = document.createElement('button');
@@ -69,6 +73,7 @@ class Level {
     
         buttonMenu.onclick = () => {
             this.app.changeLevel('menu');
+            this.app.render();
         };
         
         appContainer.appendChild(buttonMenu);
