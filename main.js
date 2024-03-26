@@ -39,7 +39,9 @@ function render() {
 
     const buttonTela1 = document.createElement('button');
     buttonTela1.innerText = 'Ir para a Tela 1';
-
+    buttonTela1.z = 10;  //posição para aparecer (div workspace blocky está em 1)
+    showCode.z = 10; 
+    
     showCode.onclick =  function() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     console.log(code);
