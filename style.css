@@ -1,17 +1,38 @@
-body {
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 0;
-    height: 100vh;
     overflow: hidden;
 }
 
+.container {
+    width: 80vw; /* Define a largura máxima para o container que inclui Blockly */
+    height: 90vh; /* Define a altura máxima para o container */
+    display: flex; /* Utiliza flex para organizar o conteúdo */
+    flex-direction: column; /* Organiza os filhos verticalmente */
+    align-items: left; /* Centraliza os filhos horizontalmente */
+    margin-top: 1vh; /* Adiciona espaço no topo do container */
+    justify-content: start; /* Alinha os filhos no topo do container */
+    position: relative; /* Estabelece um contexto de posicionamento */
+}
+
+#tituloDiv {
+    position: absolute; /* Posiciona o título de forma absoluta */
+    top: 0; /* Alinha o título ao topo do container */
+    width: 100%; /* Faz o título ocupar a largura total do container */
+    text-align: center; /* Centraliza o texto do título */
+}
+
 #blocklyDiv {
-    width: 80vw; /* Ajusta a largura para 80% da largura da viewport */
-    height: 80vh; /* Ajusta a altura para 80% da altura da viewport */
-    max-width: 600px; /* Máximo de largura para evitar que fique muito grande em telas grandes */
-    max-height: 480px; /* Máximo de altura para evitar que fique muito grande em telas grandes */
+    flex-grow: 1; /* Permite que o Blockly cresça para ocupar o espaço disponível */
     border: 1px solid #888;
     border-radius: 4px;
+    box-sizing: border-box;
+    width: 70vw; /* Define a largura máxima para o container que inclui Blockly */
+    height: 70vh; /* Define a altura máxima para o container */
 }

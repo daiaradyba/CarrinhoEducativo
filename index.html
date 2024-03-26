@@ -3,11 +3,13 @@
 <head>
   <title>Blockly Code Generator</title>
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Blockly Code Generator</h1>
-
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  <div class="container">
+    
+    <div id="blocklyDiv"></div>
+  </div>
   <xml id="toolbox" style="display: none">
     <category name="Lógica" colour="#5C81A6">
       <block type="controls_if"></block>
