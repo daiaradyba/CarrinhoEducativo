@@ -7,19 +7,30 @@ class App {
     addLevel(level) {
       this.levels[level.name] = level;
     }
-  
+ 
+changeLevel(levelName) {
+  if (levelName === 'menu') {
+    this.currentLevelName = 'menu';
+    this.render();
+  } else {
+    if (this.levels[this.currentLevelName]) {
+      this.levels[this.currentLevelName].saveState();
+    }
+    this.currentLevelName = levelName;
+    this.render();
+  }
+}
+
+
+/*
     changeLevel(levelName) {
-        if (levelName === 'menu') {
-          this.currentLevelName = 'menu';
-          this.render();
-        } else {
-          if (this.levels[this.currentLevelName]) {
-            this.levels[this.currentLevelName].saveState();
-          }
-          this.currentLevelName = levelName;
-          this.render();
-        }
+      if (this.levels[this.currentLevelName]) {
+        this.levels[this.currentLevelName].saveState();
       }
+      this.currentLevelName = levelName;
+      this.render();
+    }
+    */
   
     renderMenu(appContainer) {
       // Limpa o conteúdo atual

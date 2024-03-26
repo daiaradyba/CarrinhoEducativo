@@ -89,6 +89,8 @@ class Level {
     // Método para salvar o estado do Blockly workspace
     saveState() {
       if (this.workspace) {
+        console.log(this.workspace);
+        console.log("entrei")
         const xml = Blockly.Xml.workspaceToDom(this.workspace);
         const xmlText = Blockly.utils.xml.domToText(xml);
         localStorage.setItem(this.xmlWorkspaceKey, xmlText);
