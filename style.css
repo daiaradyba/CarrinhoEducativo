@@ -21,6 +21,27 @@ html, body {
     justify-content: start; /* Alinha os filhos no topo do container */
     position: absolute; /* Estabelece um contexto de posicionamento */
 }
+
+.instructions-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.instructions-img {
+    max-width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    display: block;
+    margin: 0 auto 20px;
+    max-height: 400px; /* Ajuste conforme necessário */
+}
+
+.start-level-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .buttons-container {
     display: flex;
     justify-content: space-around; /* Distribui o espaço entre os botões */
