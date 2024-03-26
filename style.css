@@ -34,7 +34,7 @@ html, body {
     background-color: #f0f0f0; /* Cor de fundo */
     border: 1px solid #ccc; /* Borda */
     border-radius: 5px; /* Borda arredondada */
-     z-index: 10;
+    z-index: 10;
   }
 #tituloDiv {
     position: absolute; /* Posiciona o título de forma absoluta */
