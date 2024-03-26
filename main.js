@@ -1,3 +1,5 @@
+
+
 var workspace = Blockly.inject('blocklyDiv', {
     toolbox: document.getElementById('toolbox')
   });
@@ -6,4 +8,6 @@ var workspace = Blockly.inject('blocklyDiv', {
     // Gera o código a partir dos blocos
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     console.log(code);
+    alert(code);
   }
+

@@ -6,13 +6,17 @@
 </head>
 <body>
   <h1>Blockly Code Generator</h1>
+
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
   <xml id="toolbox" style="display: none">
     <category name="Lógica" colour="#5C81A6">
       <block type="controls_if"></block>
+      
       <block type="logic_compare"></block>
       <block type="logic_operation"></block>
       <block type="logic_negate"></block>
       <block type="logic_boolean"></block>
+      <block type="ir_para_frente"></block>
     </category>
     <category name="Laços" colour="#5CA65C">
       <block type="controls_repeat_ext">
@@ -30,16 +34,10 @@
     </category>
     <!-- Continue adicionando categorias e blocos conforme necessário -->
   </xml>
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-  <button onclick="generateCode()">Gerar Código JS</button>
-  <script>
-    var workspace = Blockly.inject('blocklyDiv',
-        {toolbox: document.getElementById('toolbox')});
-    
-    function generateCode() {
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
-      alert(code);
-    }
-  </script>
+  <button onclick="showCode()">Gerar Código JS</button>
+ 
+ <script src="blocos.js"></script>
+ <script src="main.js"></script>
+
 </body>
 </html>
