@@ -22,7 +22,7 @@ function render() {
     appContainer.appendChild(buttonTela2);
   } else if (appState === 'tela2') {
     // Conteúdo da Tela 2
-    appContainer.innerHTML = '<div class="container"><div id="blocklyDiv"></div></div><xml id="toolbox" style="display: none"><category name="Controles Carro" colour="#F33D49"><block type="start"></block><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block></category><category name="Lógica" colour="#774AD9"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></category><category name="Laços" colour="#5ED905"><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block><block type="controls_whileUntil"></block></category><category name="Matemática" colour="#E80C7A"><block type="math_number"></block><block type="math_arithmetic"></block></category><!-- Continue adicionando categorias e blocos conforme necessário --></xml><button id="showCode">Gerar Código JS</button>';
+    appContainer.innerHTML = '<div id="blocklyDiv"></div><xml id="toolbox" style="display: none"><category name="Controles Carro" colour="#F33D49"><block type="start"></block><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block></category><category name="Lógica" colour="#774AD9"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></category><category name="Laços" colour="#5ED905"><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block><block type="controls_whileUntil"></block></category><category name="Matemática" colour="#E80C7A"><block type="math_number"></block><block type="math_arithmetic"></block></category><!-- Continue adicionando categorias e blocos conforme necessário --></xml><button id="showCode">Gerar Código JS</button>';
     
     var workspace = Blockly.inject('blocklyDiv', {
       toolbox: document.getElementById('toolbox')
@@ -39,10 +39,11 @@ function render() {
 
     const buttonTela1 = document.createElement('button');
     buttonTela1.innerText = 'Ir para a Tela 1';
-    buttonTela1.z = 10;  //posição para aparecer (div workspace blocky está em 1)
+    
     buttonTela1.className = 'button';
     showCode.className = 'button';
-    showCode.z = 10; 
+
+
     showCode.onclick =  function() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     console.log(code);
@@ -58,9 +59,14 @@ function render() {
         localStorage.setItem('blocklyWorkspace_level1', xmlText);
       }
 
+
       render(); // Renderiza novamente com o novo estado
     };
+    
     appContainer.appendChild(buttonTela1);
+    appContainer.appendChild(showCode);
+    appContainer.appendChild(blocklyDiv);
+
   }
 }
 
