@@ -9,12 +9,17 @@ class App {
     }
   
     changeLevel(levelName) {
-      if (this.levels[this.currentLevelName]) {
-        this.levels[this.currentLevelName].saveState();
+        if (levelName === 'menu') {
+          this.currentLevelName = 'menu';
+          this.render();
+        } else {
+          if (this.levels[this.currentLevelName]) {
+            this.levels[this.currentLevelName].saveState();
+          }
+          this.currentLevelName = levelName;
+          this.render();
+        }
       }
-      this.currentLevelName = levelName;
-      this.render();
-    }
   
     renderMenu(appContainer) {
       // Limpa o conteúdo atual
