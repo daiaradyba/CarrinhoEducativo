@@ -19,8 +19,13 @@ html, body {
     margin-top: 1vh; /* Adiciona espaço no topo do container */
     margin-left: 1vh; /* Adiciona espaço no topo do container */
     justify-content: start; /* Alinha os filhos no topo do container */
-    position: relative; /* Estabelece um contexto de posicionamento */
+    position: absolute; /* Estabelece um contexto de posicionamento */
 }
+.button {
+    position: absolute;
+    z-index: 10;
+    
+  }
 
 #tituloDiv {
     position: absolute; /* Posiciona o título de forma absoluta */
@@ -34,6 +39,7 @@ html, body {
     border: 1px solid #888;
     border-radius: 4px;
     box-sizing: border-box;
+    position:absolute;
     width: 90vw; /* Define a largura máxima para o container que inclui Blockly */
     height: 70vh; /* Define a altura máxima para o container */
     z-index: 1;

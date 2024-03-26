@@ -14,7 +14,7 @@ function render() {
     appContainer.innerHTML = '<h1>Blockly Code Generator</h1>'; // Adicione o resto do conteúdo da Tela 1
     // Adiciona o botão para trocar para a Tela 2
     const buttonTela2 = document.createElement('button');
-    buttonTela2.innerText = 'Ir para a Tela 2a';
+    buttonTela2.innerText = 'Ir para a Tela 2B';
     buttonTela2.onclick = function() {
       appState = 'tela2';
       render(); // Renderiza novamente com o novo estado
@@ -40,13 +40,13 @@ function render() {
     const buttonTela1 = document.createElement('button');
     buttonTela1.innerText = 'Ir para a Tela 1';
     buttonTela1.z = 10;  //posição para aparecer (div workspace blocky está em 1)
+    buttonTela1.className = 'button';
+    showCode.className = 'button';
     showCode.z = 10; 
-
     showCode.onclick =  function() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     console.log(code);
     alert(code);
-
     }
 
     buttonTela1.onclick = function() {
