@@ -4,19 +4,20 @@ html, body {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     overflow: hidden;
 }
 
 .container {
     width: 80vw; /* Define a largura máxima para o container que inclui Blockly */
-    height: 90vh; /* Define a altura máxima para o container */
+    height: 60vh; /* Define a altura máxima para o container */
     display: flex; /* Utiliza flex para organizar o conteúdo */
     flex-direction: column; /* Organiza os filhos verticalmente */
     align-items: left; /* Centraliza os filhos horizontalmente */
     margin-top: 1vh; /* Adiciona espaço no topo do container */
+    margin-left: 1vh; /* Adiciona espaço no topo do container */
     justify-content: start; /* Alinha os filhos no topo do container */
     position: relative; /* Estabelece um contexto de posicionamento */
 }
