@@ -28,12 +28,13 @@ html, body {
 }
 
 .instructions-img {
+    max-height: 100%;
     max-width: 100%;
     height: auto;
     overflow-y: scroll;
     display: block;
     margin: 0 auto 20px;
-    max-height: 400px; /* Ajuste conforme necessário */
+    max-height: 1000px; /* Ajuste conforme necessário */
 }
 
 .start-level-btn {
