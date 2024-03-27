@@ -29,16 +29,19 @@ class Level {
         appContainer.innerHTML = `
         <div class="instructions-container">
             <img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">
-            <button id="botaostart" class="button start-level-btn">Iniciar Level</button>
         </div>`;
+      
+        const buttonstart = document.createElement('button');
+        buttonstart.innerText = 'Iniciar Level';
+        buttonstart.className = 'button';
 
-    
-    // Reinicializar os eventos após o DOM ser atualizado
-    setTimeout(() => {
-        document.getElementById('botaostart').onclick = () => {
+        buttonstart.onclick = () => {
             this.startLevel(appContainer);
         };
-    }, 0);
+
+        appContainer.appendChild(buttonstart);
+    
+
     }
 
 //Antigo Render
@@ -48,12 +51,13 @@ class Level {
 
         const showCode = document.createElement('button');
         showCode.innerText = 'Gerar JavaScript';
+        showCode.className = 'button';
 
         const buttonMenu = document.createElement('button');
         buttonMenu.innerText = 'Menu';
-        
         buttonMenu.className = 'button';
-        showCode.className = 'button';
+        
+        
     
         const buttonRessetarLevel = document.createElement('button');
         buttonRessetarLevel.innerText = 'Ressetar Level';
