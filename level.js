@@ -32,11 +32,10 @@ class Level {
             <button id="botaostart" class="button start-level-btn">Iniciar Level</button>
         </div>`;
 
-    // Aguarda o navegador reconhecer as mudanças no DOM
+    
+    // Reinicializar os eventos após o DOM ser atualizado
     setTimeout(() => {
-        // Agora, você pode obter o botão pelo ID
-        const startBtn = document.getElementById('botaostart');
-        startBtn.onclick = () => {
+        document.getElementById('botaostart').onclick = () => {
             this.startLevel(appContainer);
         };
     }, 0);
@@ -73,7 +72,7 @@ class Level {
     
         buttonMenu.onclick = () => {
             this.app.changeLevel('menu');
-            this.app.render();
+            this.app.render(); // acho que to renderizando duas vezes. tentar tirar e ver oq acontece
         };
         
         appContainer.appendChild(buttonMenu);

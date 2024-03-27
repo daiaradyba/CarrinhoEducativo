@@ -23,6 +23,7 @@ changeLevel(levelName) {
 
 
 /*
+Aqui eu nao tava voltando  o menu para menu
     changeLevel(levelName) {
       if (this.levels[this.currentLevelName]) {
         this.levels[this.currentLevelName].saveState();
