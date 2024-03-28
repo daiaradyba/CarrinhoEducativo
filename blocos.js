@@ -55,25 +55,30 @@ Blockly.Blocks['frente'] = {
 
   javascript.javascriptGenerator.forBlock['esquerda'] = function(block, generator) {
     var value_valor_esquerda = generator.valueToCode(block, 'valor_esquerda', javascript.Order.ATOMIC);
-    var code = 'esquerda:'+value_valor_esquerda+'\n';
+    var code = 'esquerda:'+value_valor_esquerda+'\n;';
     return code;
   };
 
   javascript.javascriptGenerator.forBlock['direita'] = function(block, generator) {
     var value_valor_direita = generator.valueToCode(block, 'valor_direita', javascript.Order.ATOMIC);
-    var code = 'direita:'+value_valor_direita+'\n';
+    var code = 'direita:'+value_valor_direita+'\n;';
     return code;
   };
 
   javascript.javascriptGenerator.forBlock['frente'] = function(block, generator) {
     var value_valor_frente = generator.valueToCode(block, 'valor_frente', javascript.Order.ATOMIC);
-    var code = 'frente:'+value_valor_frente+'\n';
+    if(value_valor_frente){
+        var code = 'frente:'+value_valor_frente+';\n';
+    }
+    else{
+        var code = 'frente_error';
+    }
     return code;
   };
 
   javascript.javascriptGenerator.forBlock['tras'] = function(block, generator) {
     var value_valor_tras = generator.valueToCode(block, 'valor_tras', javascript.Order.ATOMIC);
-    var code = 'tras:'+value_valor_tras+'\n';
+    var code = 'tras:'+value_valor_tras+';\n';
     return code;
   };
 
@@ -90,6 +95,6 @@ Blockly.Blocks['frente'] = {
 
   javascript.javascriptGenerator.forBlock['start'] = function(block, generator) {
     // TODO: Assemble javascript into code variable.
-    var code = 'start\n';
+    var code = 'start;\n';
     return code;
   };

@@ -5,12 +5,52 @@
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyCk3paYrbDH1VJlajChdj1Z5BFqxoJCDSc",
+  authDomain: "carrinhoeducativo.firebaseapp.com",
+  databaseURL: "https://carrinhoeducativo-default-rtdb.firebaseio.com",
+  projectId: "carrinhoeducativo",
+  storageBucket: "carrinhoeducativo.appspot.com",
+  messagingSenderId: "480133126414",
+  appId: "1:480133126414:web:677df1f88f5f4a40741f5f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
 </head>
 <body>
   <div id="app"></div> <!-- Contêiner onde o app é renderizado -->
  <script src="blocos.js"></script>
  <script src="level.js"></script>
  <script src="app.js"></script>
+ <!-- 
+ <script type = "module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    //Your web app's Firebase configuration
+  var firebaseConfig = {
+  apiKey: "AIzaSyCk3paYrbDH1VJlajChdj1Z5BFqxoJCDSc",
+  authDomain: "carrinhoeducativo.firebaseapp.com",
+  databaseURL: "https://carrinhoeducativo-default-rtdb.firebaseio.com",
+  projectId: "carrinhoeducativo",
+  storageBucket: "carrinhoeducativo.appspot.com",
+  messagingSenderId: "480133126414",
+  appId: "1:480133126414:web:677df1f88f5f4a40741f5f"
+};
+
+
+    // // Initialize Firebase
+    // firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firebase
+  const firebase = initializeApp(firebaseConfig);
+  </script>
+  -->
+
  <script src="main.js"></script>
 
 </body>

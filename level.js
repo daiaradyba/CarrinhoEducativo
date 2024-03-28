@@ -79,9 +79,55 @@ render(appContainer) {
 
     // Define os eventos dos botões
     showCode.onclick = () => {
-        var code = Blockly.JavaScript.workspaceToCode(this.workspace);
-        console.log(code);
-        alert(code);
+        const code = Blockly.JavaScript.workspaceToCode(this.workspace);
+        console.log(code); // Para depuração
+
+        
+        database.ref("/").update({
+            code: code
+          });
+        /*Codigo para validação - Ainda em construção
+        let instructionErrors = [];
+    
+        // Verifica se o código inclui pelo menos uma linha de partida "start"
+        if (!code.includes("start")) {
+          instructionErrors.push("Erro: O bloco 'start' está faltando.");
+        }
+    
+        // Verifica se as instruções presentes têm valores associados
+        const instructions = ["frente", "tras", "direita", "esquerda"];
+       
+        let i = 0;
+        instructions.forEach((instruction) => {
+            i++;
+          // Usa uma RegExp com a flag 'g' para encontrar todas as ocorrências
+          const regex = new RegExp(`${instruction}:\\d+`, "g");
+          const regex_wrong = new RegExp(`${instruction}:`, "g");
+
+          console.log("\n\nIteração "+ i);
+          console.log("Regex:  "+ regex);
+          console.log("Regex wrong:  "+ regex_wrong);
+
+          const matches = code.match(regex);
+          const matches_wrong = code.match(regex_wrong);
+          console.log("matches:  "+matches);
+          console.log("matches wrong:  "+matches_wrong);
+    
+          // Verifica se a instrução está presente e tem pelo menos uma ocorrência válida
+          if (code.includes(instruction) && (!matches || matches.length === 0)) {
+            // Se a instrução está presente mas não tem um valor válido associado
+            instructionErrors.push(`Erro: A instrução '${instruction}' não tem um valor válido ou está ausente.`);
+          }
+        });
+    
+        if (instructionErrors.length > 0) {
+          // Mostra os erros encontrados
+          alert(instructionErrors.join("\n"));
+        } else {
+          // Se tudo estiver correto, ou não há instruções de movimento ou elas têm valores válidos
+          alert("Todos os blocos necessários estão corretos.");
+        }
+        */
     };
     
     buttonRessetarLevel.onclick = () => {

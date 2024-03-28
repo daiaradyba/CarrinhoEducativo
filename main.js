@@ -32,5 +32,6 @@ app.addLevel(level2);
 app.addLevel(level3);
 
 
+database = firebase.database();
 // Inicializa a renderização do app no nível desejado
 app.changeLevel('menu');
