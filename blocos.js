@@ -1,13 +1,41 @@
-Blockly.Blocks['piscarled'] = {
+Blockly.Blocks['ligarled'] = {
   init: function() {
-    this.appendValueInput("tempo")
+    this.appendValueInput("LED_Selector")
         .setCheck("Number")
-        .appendField("Piscar LED por ");
+        .appendField("Ligar Led");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
   }
-}
+};
+
+Blockly.Blocks['esperar'] = {
+  init: function() {
+    this.appendValueInput("Esperar")
+        .setCheck("Number")
+        .appendField("Esperar por segundos");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['desligarled'] = {
+  init: function() {
+    this.appendValueInput("Desligar_LED_Selector")
+        .setCheck("Number")
+        .appendField("Desligar Led");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 
 Blockly.Blocks['frente'] = {
     init: function() {
@@ -114,5 +142,25 @@ Blockly.Blocks['frente'] = {
     var value_tempo = generator.valueToCode(block, 'tempo', javascript.Order.ATOMIC);
     // TODO: Assemble javascript into code variable.
     var code = value_tempo;
+    return code;
+  };
+
+  javascript.javascriptGenerator.forBlock['ligarled'] = function(block, generator) {
+    var value_ligar_led_selector = generator.valueToCode(block, 'LED_Selector', javascript.Order.ATOMIC);
+    // TODO: Assemble javascript into code variable.
+    var code = 'ativar;'+value_ligar_led_selector;
+    return code;
+  };
+  javascript.javascriptGenerator.forBlock['desligarled'] = function(block, generator) {
+    var value_desligar_led_selector = generator.valueToCode(block, 'Desligar_LED_Selector', javascript.Order.ATOMIC);
+    // TODO: Assemble javascript into code variable.
+    var code =  'desativar;'+value_desligar_led_selector;
+    return code;
+  };
+
+  javascript.javascriptGenerator.forBlock['esperar'] = function(block, generator) {
+    var value_esperar = generator.valueToCode(block, 'Esperar', javascript.Order.ATOMIC);
+    // TODO: Assemble javascript into code variable.
+    var code = 'esperar;'+value_esperar;
     return code;
   };
