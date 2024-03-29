@@ -148,19 +148,19 @@ Blockly.Blocks['frente'] = {
   javascript.javascriptGenerator.forBlock['ligarled'] = function(block, generator) {
     var value_ligar_led_selector = generator.valueToCode(block, 'LED_Selector', javascript.Order.ATOMIC);
     // TODO: Assemble javascript into code variable.
-    var code = 'ativar;'+value_ligar_led_selector;
+    var code = 'ativar;'+value_ligar_led_selector+'\n';
     return code;
   };
   javascript.javascriptGenerator.forBlock['desligarled'] = function(block, generator) {
     var value_desligar_led_selector = generator.valueToCode(block, 'Desligar_LED_Selector', javascript.Order.ATOMIC);
     // TODO: Assemble javascript into code variable.
-    var code =  'desativar;'+value_desligar_led_selector;
+    var code =  'desativar;'+value_desligar_led_selector+'\n';
     return code;
   };
 
   javascript.javascriptGenerator.forBlock['esperar'] = function(block, generator) {
     var value_esperar = generator.valueToCode(block, 'Esperar', javascript.Order.ATOMIC);
     // TODO: Assemble javascript into code variable.
-    var code = 'esperar;'+value_esperar;
+    var code = 'esperar;'+value_esperar+'\n';
     return code;
   };
