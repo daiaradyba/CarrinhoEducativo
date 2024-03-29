@@ -1,3 +1,14 @@
+Blockly.Blocks['piscarled'] = {
+  init: function() {
+    this.appendValueInput("tempo")
+        .setCheck("Number")
+        .appendField("Piscar LED por ");
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+}
+
 Blockly.Blocks['frente'] = {
     init: function() {
       this.appendValueInput("valor_frente")
@@ -96,5 +107,12 @@ Blockly.Blocks['frente'] = {
   javascript.javascriptGenerator.forBlock['start'] = function(block, generator) {
     // TODO: Assemble javascript into code variable.
     var code = 'start;\n';
+    return code;
+  };
+
+  javascript.javascriptGenerator.forBlock['piscarled'] = function(block, generator) {
+    var value_tempo = generator.valueToCode(block, 'tempo', javascript.Order.ATOMIC);
+    // TODO: Assemble javascript into code variable.
+    var code = value_tempo;
     return code;
   };
