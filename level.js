@@ -1,3 +1,6 @@
+let currentStatus = "Carregando status...";  // Estado inicial
+
+
 class Level {
     constructor(name, xmlWorkspaceKey, toolboxXml,app,instructionsImg) {
       this.name = name;
@@ -6,7 +9,33 @@ class Level {
       this.workspace = null; // Blockly workspace será inicializado depois
       this.app = app;
       this.instructionsImg = instructionsImg;
+      this.pollingInterval = null;  // Referência ao intervalo de polling
     }
+
+    startPollingStatus() {
+      this.pollingInterval = setInterval(() => {
+          firebase.database().ref('/result/message').once('value').then((snapshot) => {
+              const statusDisplay = document.getElementById('statusDisplay');
+              if (statusDisplay) {
+                  statusDisplay.innerText = snapshot.val() || "Nenhuma informação disponível";
+              }
+              console.log("Status atualizado: ", snapshot.val());
+          }).catch((error) => {
+              console.error("Erro ao buscar dados do Firebase:", error);
+              if (statusDisplay) {
+                  statusDisplay.innerText = "Erro ao buscar status do carrinho.";
+              }
+          });
+      }, 20); // Atualiza a cada 2 segundos
+  }
+
+  stopPollingStatus() {
+      if (this.pollingInterval) {
+          clearInterval(this.pollingInterval);
+          this.pollingInterval = null;
+          console.log("Polling parado.");
+      }
+  }
   
     // Método para inicializar o Blockly workspace
     initBlockly() {
@@ -68,6 +97,15 @@ render(appContainer) {
     showCode.innerText = 'Gerar JavaScript';
     showCode.className = 'button';
     showCode.style.display = 'none'; // Oculta inicialmente
+     
+    // Elemento para mostrar o status do carrinho
+     const statusDisplay = document.createElement('div');
+     statusDisplay.id = 'statusDisplay';
+     statusDisplay.className = 'status-display';
+     statusDisplay.innerText = currentStatus;  // Texto inicial
+     statusDisplay.style.display = 'none'; // Oculta inicialmente
+
+ 
 
     // Cria o elemento xml para o toolbox do Blockly
     const toolbox = document.createElement('xml');
@@ -86,55 +124,16 @@ render(appContainer) {
         database.ref("/").update({
             code: code
           });
-        /*Codigo para validação - Ainda em construção
-        let instructionErrors = [];
-    
-        // Verifica se o código inclui pelo menos uma linha de partida "start"
-        if (!code.includes("start")) {
-          instructionErrors.push("Erro: O bloco 'start' está faltando.");
-        }
-    
-        // Verifica se as instruções presentes têm valores associados
-        const instructions = ["frente", "tras", "direita", "esquerda"];
-       
-        let i = 0;
-        instructions.forEach((instruction) => {
-            i++;
-          // Usa uma RegExp com a flag 'g' para encontrar todas as ocorrências
-          const regex = new RegExp(`${instruction}:\\d+`, "g");
-          const regex_wrong = new RegExp(`${instruction}:`, "g");
-
-          console.log("\n\nIteração "+ i);
-          console.log("Regex:  "+ regex);
-          console.log("Regex wrong:  "+ regex_wrong);
-
-          const matches = code.match(regex);
-          const matches_wrong = code.match(regex_wrong);
-          console.log("matches:  "+matches);
-          console.log("matches wrong:  "+matches_wrong);
-    
-          // Verifica se a instrução está presente e tem pelo menos uma ocorrência válida
-          if (code.includes(instruction) && (!matches || matches.length === 0)) {
-            // Se a instrução está presente mas não tem um valor válido associado
-            instructionErrors.push(`Erro: A instrução '${instruction}' não tem um valor válido ou está ausente.`);
-          }
-        });
-    
-        if (instructionErrors.length > 0) {
-          // Mostra os erros encontrados
-          alert(instructionErrors.join("\n"));
-        } else {
-          // Se tudo estiver correto, ou não há instruções de movimento ou elas têm valores válidos
-          alert("Todos os blocos necessários estão corretos.");
-        }
-        */
+      
     };
     
     buttonRessetarLevel.onclick = () => {
         this.workspace.clear();
     };
+
     
     buttonMenu.onclick = () => {
+        this.stopPollingStatus();
         this.app.changeLevel('menu');
     };
 
@@ -142,6 +141,7 @@ render(appContainer) {
     appContainer.appendChild(buttonMenu);
     appContainer.appendChild(buttonRessetarLevel);
     appContainer.appendChild(showCode);
+    appContainer.appendChild(statusDisplay);
     appContainer.appendChild(blocklyDiv);
     appContainer.appendChild(toolbox);
 
@@ -157,7 +157,9 @@ render(appContainer) {
         buttonMenu.style.display = 'inline-block'; // Mostra Menu
         buttonRessetarLevel.style.display = 'inline-block'; // Mostra Reset
         showCode.style.display = 'inline-block'; // Mostra Show Code
+        statusDisplay.style.display = 'block'; // Mostra Status Carrinho
         this.initBlockly();
+        this.startPollingStatus();
     };
 }
     
