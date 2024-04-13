@@ -105,6 +105,129 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+  Blockly.Blocks['se'] = {
+    init: function() {
+      this.appendValueInput("Condition")
+          .setCheck(null)
+          .appendField("SE");
+      this.appendStatementInput("blocos")
+          .setCheck(null);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['led_choice'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("LED")
+          .appendField(new Blockly.FieldDropdown([["1","1"], ["2","2"]]), "LEDS");
+      this.setOutput(true, 'String');
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['status_choice'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("")
+          .appendField(new Blockly.FieldDropdown([["ativado","1"], ["desativado","0"]]), "Status");
+      this.setOutput(true, 'String');
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['igual'] = {
+    init: function() {
+      this.appendValueInput("cond1")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("=");
+      this.appendValueInput("cond2")
+          .setCheck(null);
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  javascript.javascriptGenerator.forBlock['igual'] = function(block, generator) {
+    var value_cond1 = generator.valueToCode(block, 'cond1', javascript.Order.NONE);
+    var value_cond2 = generator.valueToCode(block, 'cond2', javascript.Order.NONE);
+
+    var code = value_cond1 + '='+value_cond2;
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+
+  javascript.javascriptGenerator.forBlock['led_choice'] = function(block, generator) {
+    var dropdown_leds = block.getFieldValue('LEDS');
+    // TODO: Assemble javascript into code variable.
+    var code = 'LED*'+dropdown_leds;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+
+  };
+
+  javascript.javascriptGenerator.forBlock['status_choice'] = function(block, generator) {
+    var dropdown_choice = block.getFieldValue('Status');
+    // TODO: Assemble javascript into code variable.
+    var code = 'STATUS*'+dropdown_choice;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+
+  };
+
+
+
+  javascript.javascriptGenerator.forBlock['se'] = function(block, generator) {
+    //var variable_componente = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('componente'), Blockly.Variables.NAME_TYPE);
+    var value_condition = Blockly.JavaScript.valueToCode(block, 'Condition', Blockly.JavaScript.ORDER_NONE); // ORDER_ATOMIC GERA PARENTESES
+    var statements_blocos = Blockly.JavaScript.statementToCode(block, 'blocos').trim();
+  
+    // Função recursiva para contar todos os blocos, incluindo blocos aninhados
+    function countBlocks(bloco) {
+      var count = 0;
+      while (bloco) {
+        count++;
+        // Contar também os blocos aninhados dentro de cada bloco
+        var nextLevelBlocks = bloco.getInputTargetBlock('blocos');
+        count += countBlocks(nextLevelBlocks);  // Chamada recursiva para contar blocos dentro do bloco atual
+        bloco = bloco.getNextBlock();
+      }
+      return count;
+    }
+  
+    // Contar os blocos na entrada 'blocos'
+    var initialBlock = block.getInputTargetBlock('blocos');
+    var totalCount = countBlocks(initialBlock);
+  
+    // Removendo quebras de linha e espaços antes de cada linha
+    var code = 'se-' +value_condition+';' +totalCount + '\n';
+    if (statements_blocos) {
+        var lines = statements_blocos.split('\n');
+        var trimmedLines = lines.map(function(line) {
+            return line.trim();
+        });
+        code += trimmedLines.join('\n');
+    }
+    code += '\n';  // Adiciona quebra de linha ao final para separar de outros blocos
+
+    return code;
+  }
+
+
+
+
   javascript.javascriptGenerator.forBlock['ler'] = function(block, generator) {
     var value_valor_ler = generator.valueToCode(block, 'Ler_Selector', javascript.Order.ATOMIC);
     var code = 'ler;'+value_valor_ler+'\n';
