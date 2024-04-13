@@ -11,6 +11,19 @@ Blockly.Blocks['ligarled'] = {
   }
 };
 
+Blockly.Blocks['ler'] = {
+  init: function() {
+    this.appendValueInput("Ler_Selector")
+        .setCheck("Number")
+        .appendField("Ler Entrada");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['esperar'] = {
   init: function() {
     this.appendValueInput("Esperar")
@@ -91,6 +104,13 @@ Blockly.Blocks['frente'] = {
    this.setHelpUrl("");
     }
   };
+
+  javascript.javascriptGenerator.forBlock['ler'] = function(block, generator) {
+    var value_valor_ler = generator.valueToCode(block, 'Ler_Selector', javascript.Order.ATOMIC);
+    var code = 'ler;'+value_valor_ler+'\n';
+    return code;
+  };
+
 
   javascript.javascriptGenerator.forBlock['esquerda'] = function(block, generator) {
     var value_valor_esquerda = generator.valueToCode(block, 'valor_esquerda', javascript.Order.ATOMIC);
