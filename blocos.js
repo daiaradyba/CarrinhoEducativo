@@ -120,6 +120,21 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+  Blockly.Blocks['while'] = {
+    init: function() {
+      this.appendValueInput("Condition")
+          .setCheck(null)
+          .appendField("Enquanto");
+      this.appendStatementInput("blocos")
+          .setCheck(null);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
   Blockly.Blocks['led_choice'] = {
     init: function() {
       this.appendDummyInput()
@@ -252,6 +267,41 @@ Blockly.Blocks['frente'] = {
 
   };
 
+  javascript.javascriptGenerator.forBlock['while'] = function(block, generator) {
+    //var variable_componente = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('componente'), Blockly.Variables.NAME_TYPE);
+    var value_condition = Blockly.JavaScript.valueToCode(block, 'Condition', Blockly.JavaScript.ORDER_NONE); // ORDER_ATOMIC GERA PARENTESES
+    var statements_blocos = Blockly.JavaScript.statementToCode(block, 'blocos').trim();
+  
+    // Função recursiva para contar todos os blocos, incluindo blocos aninhados
+    function countBlocks(bloco) {
+      var count = 0;
+      while (bloco) {
+        count++;
+        // Contar também os blocos aninhados dentro de cada bloco
+        var nextLevelBlocks = bloco.getInputTargetBlock('blocos');
+        count += countBlocks(nextLevelBlocks);  // Chamada recursiva para contar blocos dentro do bloco atual
+        bloco = bloco.getNextBlock();
+      }
+      return count;
+    }
+  
+    // Contar os blocos na entrada 'blocos'
+    var initialBlock = block.getInputTargetBlock('blocos');
+    var totalCount = countBlocks(initialBlock);
+  
+    // Removendo quebras de linha e espaços antes de cada linha
+    var code = 'while-' +value_condition+';' +totalCount + '\n';
+    if (statements_blocos) {
+        var lines = statements_blocos.split('\n');
+        var trimmedLines = lines.map(function(line) {
+            return line.trim();
+        });
+        code += trimmedLines.join('\n');
+    }
+    code += '\n';  // Adiciona quebra de linha ao final para separar de outros blocos
+
+    return code;
+  }
 
   javascript.javascriptGenerator.forBlock['se'] = function(block, generator) {
     //var variable_componente = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('componente'), Blockly.Variables.NAME_TYPE);
