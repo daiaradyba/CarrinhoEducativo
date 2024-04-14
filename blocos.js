@@ -132,6 +132,19 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+  Blockly.Blocks['sensor_choice'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Sensor")
+          .appendField(new Blockly.FieldDropdown([["1","1"], ["2","2"]]), "Sensor");
+      this.setOutput(true, 'String');
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+
   Blockly.Blocks['status_choice'] = {
     init: function() {
       this.appendDummyInput()
@@ -159,15 +172,58 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+  Blockly.Blocks['menor'] = {
+    init: function() {
+      this.appendValueInput("cond1")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("<");
+      this.appendValueInput("cond2")
+          .setCheck(null);
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['valor'] = {
+    init: function() {
+      this.appendValueInput("valor")
+          .setCheck("Number")
+          .appendField("Valor");
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  javascript.javascriptGenerator.forBlock['valor'] = function(block, generator) {
+    var value_valor = generator.valueToCode(block, 'valor', javascript.Order.ATOMIC);
+    // TODO: Assemble javascript into code variable.
+    var code = 'VALOR*'+value_valor;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
   javascript.javascriptGenerator.forBlock['igual'] = function(block, generator) {
     var value_cond1 = generator.valueToCode(block, 'cond1', javascript.Order.NONE);
     var value_cond2 = generator.valueToCode(block, 'cond2', javascript.Order.NONE);
 
-    var code = value_cond1 + '='+value_cond2;
+    var code = '='+value_cond1 + '='+value_cond2;
 
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
 
+  javascript.javascriptGenerator.forBlock['menor'] = function(block, generator) {
+    var value_cond1 = generator.valueToCode(block, 'cond1', javascript.Order.NONE);
+    var value_cond2 = generator.valueToCode(block, 'cond2', javascript.Order.NONE);
+
+    var code = '<'+value_cond1 + '<'+value_cond2;
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
 
   javascript.javascriptGenerator.forBlock['led_choice'] = function(block, generator) {
     var dropdown_leds = block.getFieldValue('LEDS');
@@ -187,6 +243,14 @@ Blockly.Blocks['frente'] = {
 
   };
 
+  javascript.javascriptGenerator.forBlock['sensor_choice'] = function(block, generator) {
+    var dropdown_choice = block.getFieldValue('Sensor');
+    // TODO: Assemble javascript into code variable.
+    var code = 'SENSOR*'+dropdown_choice;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+
+  };
 
 
   javascript.javascriptGenerator.forBlock['se'] = function(block, generator) {
