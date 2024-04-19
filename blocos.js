@@ -151,7 +151,7 @@ Blockly.Blocks['frente'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Sensor")
-          .appendField(new Blockly.FieldDropdown([["1","1"], ["2","2"]]), "Sensor");
+          .appendField(new Blockly.FieldDropdown([["SENSOR1 ADC1_CHANNEL_0 VP","1"], ["SENSOR2 ADC1_CHANNEL_3 VN","2"],["SENSOR3 ADC1_CHANNEL_6 D34","3"],["SENSOR 4 ADC1_CHANNEL_7 D35","4"],["SENSOR5 ADC1_CHANNEL_4 D32","5"],["SENSOR6 ADC1_CHANNEL_5 D33","6"]]), "Sensor");
       this.setOutput(true, 'String');
       this.setColour(230);
    this.setTooltip("");
