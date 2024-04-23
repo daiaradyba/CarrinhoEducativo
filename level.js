@@ -64,18 +64,24 @@ render(appContainer) {
     // Primeiro, limpa o conteúdo atual do appContainer
     appContainer.innerHTML = '';
 
+   
+
     // Cria o container das instruções e o botão de iniciar
     const instructionsContainer = document.createElement('div');
-    instructionsContainer.className = 'instructions-container';
-    instructionsContainer.innerHTML = `<img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">`;
 
-    const buttonStart = document.createElement('button');
+    instructionsContainer.className = 'instructions-container';
+    instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start">Start Level</button><img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">`;
+
+
+
+    // Adiciona o container de instruções e o botão ao appContainer
+   
+    appContainer.appendChild(instructionsContainer);
+    const buttonStart = document.getElementById('b_Start');
     buttonStart.innerText = 'Iniciar Level';
     buttonStart.className = 'button start-level-btn';
 
-    // Adiciona o container de instruções e o botão ao appContainer
-    appContainer.appendChild(instructionsContainer);
-    instructionsContainer.appendChild(buttonStart);
+  
 
     // Cria e configura os outros elementos (Blockly, Menu, Reset, Show Code)
     // mas os deixa ocultos inicialmente

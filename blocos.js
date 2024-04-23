@@ -1,3 +1,25 @@
+
+/*ligarled - Bloco para ligar um LED.
+ler - Bloco para ler uma entrada.
+esperar - Bloco para fazer uma pausa por um determinado número de segundos.
+desligarled - Bloco para desligar um LED.
+frente - Bloco para mover para frente por um determinado valor.
+tras - Bloco para mover para trás por um determinado valor.
+esquerda - Bloco para virar à esquerda por um determinado valor.
+direita - Bloco para virar à direita por um determinado valor.
+se - Bloco condicional SE.
+while - Bloco para criar um loop WHILE.
+led_choice - Bloco para escolher um LED específico.
+sensor_choice - Bloco para escolher um sensor específico.
+status_choice - Bloco para escolher um status (ativado ou desativado).
+igual - Bloco para comparar se dois valores são iguais.
+menor - Bloco para comparar se um valor é menor que outro.
+valor - Bloco para representar um valor numérico.
+start - Bloco que representa o início de um script.
+piscarled - Bloco para piscar um LED por um tempo especificado.
+*/
+
+
 Blockly.Blocks['ligarled'] = {
   init: function() {
     this.appendValueInput("LED_Selector")
@@ -140,7 +162,7 @@ Blockly.Blocks['frente'] = {
       this.appendDummyInput()
           .appendField("LED")
           .appendField(new Blockly.FieldDropdown([["1","1"], ["2","2"]]), "LEDS");
-      this.setOutput(true, 'String');
+      this.setOutput(true, 'led_choice');
       this.setColour(230);
    this.setTooltip("");
    this.setHelpUrl("");
@@ -152,7 +174,7 @@ Blockly.Blocks['frente'] = {
       this.appendDummyInput()
           .appendField("Sensor")
           .appendField(new Blockly.FieldDropdown([["SENSOR1 ADC1_CHANNEL_0 VP","1"], ["SENSOR2 ADC1_CHANNEL_3 VN","2"],["SENSOR3 ADC1_CHANNEL_6 D34","3"],["SENSOR 4 ADC1_CHANNEL_7 D35","4"],["SENSOR5 ADC1_CHANNEL_4 D32","5"],["SENSOR6 ADC1_CHANNEL_5 D33","6"]]), "Sensor");
-      this.setOutput(true, 'String');
+      this.setOutput(true, 'sensor_choice');
       this.setColour(230);
    this.setTooltip("");
    this.setHelpUrl("");
@@ -165,7 +187,7 @@ Blockly.Blocks['frente'] = {
       this.appendDummyInput()
           .appendField("")
           .appendField(new Blockly.FieldDropdown([["ativado","1"], ["desativado","0"]]), "Status");
-      this.setOutput(true, 'String');
+      this.setOutput(true, 'status_choice');
       this.setColour(230);
    this.setTooltip("");
    this.setHelpUrl("");
@@ -175,11 +197,11 @@ Blockly.Blocks['frente'] = {
   Blockly.Blocks['igual'] = {
     init: function() {
       this.appendValueInput("cond1")
-          .setCheck(null);
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']); // Permitir somente tipos específicos
       this.appendDummyInput()
           .appendField("=");
       this.appendValueInput("cond2")
-          .setCheck(null);
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);;
       this.setOutput(true, null);
       this.setColour(230);
    this.setTooltip("");
@@ -190,11 +212,11 @@ Blockly.Blocks['frente'] = {
   Blockly.Blocks['menor'] = {
     init: function() {
       this.appendValueInput("cond1")
-          .setCheck(null);
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);
       this.appendDummyInput()
           .appendField("<");
       this.appendValueInput("cond2")
-          .setCheck(null);
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);
       this.setOutput(true, null);
       this.setColour(230);
    this.setTooltip("");
