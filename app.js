@@ -9,13 +9,16 @@ class App {
     }
  
 changeLevel(levelName) {
+  console.log("Change level "+ levelName);
+  if (this.levels[this.currentLevelName]) {
+    this.levels[this.currentLevelName].saveState();
+  } 
   if (levelName === 'menu') {
     this.currentLevelName = 'menu';
     this.render();
+
   } else {
-    if (this.levels[this.currentLevelName]) {
-      this.levels[this.currentLevelName].saveState();
-    }
+
     this.currentLevelName = levelName;
     this.render();
   }

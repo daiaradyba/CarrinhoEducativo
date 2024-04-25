@@ -174,7 +174,7 @@ render(appContainer) {
     saveState() {
       if (this.workspace) {
         console.log(this.workspace);
-        console.log("entrei")
+        console.log("entrei save State"+ this.name);
         const xml = Blockly.Xml.workspaceToDom(this.workspace);
         const xmlText = Blockly.utils.xml.domToText(xml);
         localStorage.setItem(this.xmlWorkspaceKey, xmlText);
