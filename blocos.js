@@ -224,6 +224,36 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+  Blockly.Blocks['maior'] = {
+    init: function() {
+      this.appendValueInput("cond1")
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);
+      this.appendDummyInput()
+          .appendField(">");
+      this.appendValueInput("cond2")
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['diferente'] = {
+    init: function() {
+      this.appendValueInput("cond1")
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);
+      this.appendDummyInput()
+          .appendField("!=");
+      this.appendValueInput("cond2")
+          .setCheck(['valor','led_choice','sensor_choice','status_choice']);
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
   Blockly.Blocks['valor'] = {
     init: function() {
       this.appendValueInput("valor")
@@ -261,6 +291,25 @@ Blockly.Blocks['frente'] = {
 
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
+
+  javascript.javascriptGenerator.forBlock['maior'] = function(block, generator) {
+    var value_cond1 = generator.valueToCode(block, 'cond1', javascript.Order.NONE);
+    var value_cond2 = generator.valueToCode(block, 'cond2', javascript.Order.NONE);
+
+    var code = '>'+value_cond1 + '>'+value_cond2;
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  javascript.javascriptGenerator.forBlock['diferente'] = function(block, generator) {
+    var value_cond1 = generator.valueToCode(block, 'cond1', javascript.Order.NONE);
+    var value_cond2 = generator.valueToCode(block, 'cond2', javascript.Order.NONE);
+
+    var code = '!'+value_cond1 + '!'+value_cond2;
+
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
 
   javascript.javascriptGenerator.forBlock['led_choice'] = function(block, generator) {
     var dropdown_leds = block.getFieldValue('LEDS');

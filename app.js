@@ -16,9 +16,7 @@ changeLevel(levelName) {
   if (levelName === 'menu') {
     this.currentLevelName = 'menu';
     this.render();
-
   } else {
-
     this.currentLevelName = levelName;
     this.render();
   }

@@ -14,21 +14,39 @@ class Level {
 
     startPollingStatus() {
       this.pollingInterval = setInterval(() => {
-          firebase.database().ref('/result/message').once('value').then((snapshot) => {
-              const statusDisplay = document.getElementById('statusDisplay');
-              if (statusDisplay) {
-                  statusDisplay.innerText = snapshot.val() || "Nenhuma informação disponível";
-              }
-              console.log("Status atualizado: ", snapshot.val());
-          }).catch((error) => {
-              console.error("Erro ao buscar dados do Firebase:", error);
-              if (statusDisplay) {
-                  statusDisplay.innerText = "Erro ao buscar status do carrinho.";
-              }
-          });
+        // Atualizando o status do comando
+        firebase.database().ref('/result/message').once('value').then((snapshot) => {
+            const statusDisplay = document.getElementById('statusDisplay');
+            if (statusDisplay) {
+                statusDisplay.innerText = snapshot.val() || "Nenhuma informação disponível";
+            }
+          //  console.log("Status atualizado: ", snapshot.val());
+        }).catch((error) => {
+            console.error("Erro ao buscar dados do Firebase:", error);
+            if (statusDisplay) {
+                statusDisplay.innerText = "Erro ao buscar status do carrinho.";
+            }
+        });
+    
+        // Atualizando dados dos sensores
+        for (let i = 1; i <= 6; i++) {
+          //console.log("for "+i);
+            firebase.database().ref(`/sensores/sensor${i}`).once('value').then((snapshot) => {
+                const sensorDisplay = document.getElementById(`sensor${i}Display`);
+                //console.log("sensor Display "+sensorDisplay);
+                if (sensorDisplay) {
+                    sensorDisplay.innerText = `Sensor ${i}: ${snapshot.val() || "Dados não disponíveis"}`;
+                }
+            }).catch((error) => {
+                console.error(`Erro ao buscar dados do sensor ${i}:`, error);
+                const sensorDisplay = document.getElementById(`sensor${i}Display`);
+                if (sensorDisplay) {
+                    sensorDisplay.innerText = `Sensor ${i}: Erro de comunicação`;
+                }
+            });
+        }
       }, 20); // Atualiza a cada 2 segundos
-  }
-
+    }
   stopPollingStatus() {
       if (this.pollingInterval) {
           clearInterval(this.pollingInterval);
@@ -103,6 +121,18 @@ render(appContainer) {
     showCode.innerText = 'Gerar JavaScript';
     showCode.className = 'button';
     showCode.style.display = 'none'; // Oculta inicialmente
+
+    
+    const buttonStatus = document.createElement('button');
+    buttonStatus.innerText = 'Monitorar Carrinho';
+    buttonStatus.className = 'button';
+    buttonStatus.style.display = 'none'; // Oculta inicialmente
+
+    const buttonCloseStatus = document.createElement('button');
+    buttonCloseStatus.innerText = 'Fechar Monitoramento';
+    buttonCloseStatus.className = 'button';
+    buttonCloseStatus.style.display = 'none'; // Oculta inicialmente
+     
      
     // Elemento para mostrar o status do carrinho
      const statusDisplay = document.createElement('div');
@@ -110,6 +140,49 @@ render(appContainer) {
      statusDisplay.className = 'status-display';
      statusDisplay.innerText = currentStatus;  // Texto inicial
      statusDisplay.style.display = 'none'; // Oculta inicialmente
+
+         // Elemento para mostrar o status do carrinho
+     const sensor1Display = document.createElement('div');
+     sensor1Display.id = 'sensor1Display';
+     sensor1Display.className = 'status-display';
+     sensor1Display.innerText = currentStatus;  // Texto inicial
+     sensor1Display.style.display = 'none'; // Oculta inicialmente
+
+              // Elemento para mostrar o status do carrinho
+     const sensor2Display = document.createElement('div');
+     sensor2Display.id = 'sensor2Display';
+     sensor2Display.className = 'status-display';
+     sensor2Display.innerText = currentStatus;  // Texto inicial
+     sensor2Display.style.display = 'none'; // Oculta inicialmente
+
+              // Elemento para mostrar o status do carrinho
+     const sensor3Display = document.createElement('div');
+     sensor3Display.id = 'sensor3Display';
+     sensor3Display.className = 'status-display';
+     sensor3Display.innerText = currentStatus;  // Texto inicial
+     sensor3Display.style.display = 'none'; // Oculta inicialmente
+
+              // Elemento para mostrar o status do carrinho
+     const sensor4Display = document.createElement('div');
+     sensor4Display.id = 'sensor4Display';
+     sensor4Display.className = 'status-display';
+     sensor4Display.innerText = currentStatus;  // Texto inicial
+     sensor4Display.style.display = 'none'; // Oculta inicialmente
+
+              // Elemento para mostrar o status do carrinho
+     const sensor5Display = document.createElement('div');
+     sensor5Display.id = 'sensor5Display';
+     sensor5Display.className = 'status-display';
+     sensor5Display.innerText = currentStatus;  // Texto inicial
+     sensor5Display.style.display = 'none'; // Oculta inicialmente
+
+              // Elemento para mostrar o status do carrinho
+     const sensor6Display = document.createElement('div');
+     sensor6Display.id = 'sensor6Display';
+     sensor6Display.className = 'status-display';
+     sensor6Display.innerText = currentStatus;  // Texto inicial
+     sensor6Display.style.display = 'none'; // Oculta inicialmente
+
 
  
 
@@ -133,6 +206,7 @@ render(appContainer) {
       
     };
     
+    
     buttonRessetarLevel.onclick = () => {
         this.workspace.clear();
     };
@@ -143,11 +217,45 @@ render(appContainer) {
         this.app.changeLevel('menu');
     };
 
+    buttonStatus.onclick = () => {
+      buttonStatus.style.display = 'none';
+      statusDisplay.style.display = 'block'; // Mostra Status Carrinho
+      sensor1Display.style.display = 'block'; // Mostra Status Carrinho
+      sensor2Display.style.display = 'block'; // Mostra Status Carrinho
+      sensor3Display.style.display = 'block'; // Mostra Status Carrinho
+      sensor4Display.style.display = 'block'; // Mostra Status Carrinho
+      sensor5Display.style.display = 'block'; // Mostra Status Carrinho
+      sensor6Display.style.display = 'block'; // Mostra Status Carrinho
+      buttonCloseStatus.style.display = 'inline-block'; // Mostra Show Code
+      this.startPollingStatus();
+  };
+
+  buttonCloseStatus.onclick = () => {
+    buttonCloseStatus.style.display = 'none';
+    statusDisplay.style.display = 'none'; // Mostra Status Carrinho
+    sensor1Display.style.display = 'none'; // Mostra Status Carrinho
+    sensor2Display.style.display = 'none'; // Mostra Status Carrinho
+    sensor3Display.style.display = 'none'; // Mostra Status Carrinho
+    sensor4Display.style.display = 'none'; // Mostra Status Carrinho
+    sensor5Display.style.display = 'none'; // Mostra Status Carrinho
+    sensor6Display.style.display = 'none'; // Mostra Status Carrinho
+    buttonStatus.style.display = 'inline-block'; // Mostra Show Code
+
+    this.stopPollingStatus();
+};
     appContainer.appendChild(blocklyDiv);
     appContainer.appendChild(buttonMenu);
     appContainer.appendChild(buttonRessetarLevel);
     appContainer.appendChild(showCode);
+    appContainer.appendChild(buttonStatus);
+    appContainer.appendChild(buttonCloseStatus);
     appContainer.appendChild(statusDisplay);
+    appContainer.appendChild(sensor1Display);
+    appContainer.appendChild(sensor2Display);
+    appContainer.appendChild(sensor3Display);
+    appContainer.appendChild(sensor4Display);
+    appContainer.appendChild(sensor5Display);
+    appContainer.appendChild(sensor6Display);
     appContainer.appendChild(blocklyDiv);
     appContainer.appendChild(toolbox);
 
@@ -163,9 +271,9 @@ render(appContainer) {
         buttonMenu.style.display = 'inline-block'; // Mostra Menu
         buttonRessetarLevel.style.display = 'inline-block'; // Mostra Reset
         showCode.style.display = 'inline-block'; // Mostra Show Code
-        statusDisplay.style.display = 'block'; // Mostra Status Carrinho
+        buttonStatus.style.display = 'inline-block'; // Mostra Show Code
+        
         this.initBlockly();
-        this.startPollingStatus();
     };
 }
     
@@ -180,6 +288,7 @@ render(appContainer) {
         localStorage.setItem(this.xmlWorkspaceKey, xmlText);
       }
     }
+  
   
 
   }
