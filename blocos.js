@@ -17,7 +17,21 @@ menor - Bloco para comparar se um valor é menor que outro.
 valor - Bloco para representar um valor numérico.
 start - Bloco que representa o início de um script.
 piscarled - Bloco para piscar um LED por um tempo especificado.
+
 */
+
+Blockly.Blocks['monitorar'] = {
+  init: function() {
+    this.appendValueInput("Monitorar_Selector")
+        .setCheck("Number")
+        .appendField("Monitorar Sensor");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 
 
 Blockly.Blocks['ligarled'] = {
@@ -266,6 +280,7 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+
   javascript.javascriptGenerator.forBlock['valor'] = function(block, generator) {
     var value_valor = generator.valueToCode(block, 'valor', javascript.Order.ATOMIC);
     // TODO: Assemble javascript into code variable.
@@ -470,6 +485,13 @@ Blockly.Blocks['frente'] = {
     var value_tempo = generator.valueToCode(block, 'tempo', javascript.Order.ATOMIC);
     // TODO: Assemble javascript into code variable.
     var code = value_tempo;
+    return code;
+  };
+
+  javascript.javascriptGenerator.forBlock['monitorar'] = function(block, generator) {
+    var value_monitorar_selector = generator.valueToCode(block, 'Monitorar_Selector', javascript.Order.ATOMIC);
+    // TODO: Assemble javascript into code variable.
+    var code = 'mo;'+value_monitorar_selector+'\n';
     return code;
   };
 

@@ -45,7 +45,7 @@ class Level {
                 }
             });
         }
-      }, 20); // Atualiza a cada 2 segundos
+      }, 1000); // Atualiza a cada 2 segundos
     }
   stopPollingStatus() {
       if (this.pollingInterval) {
