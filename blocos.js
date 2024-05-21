@@ -91,7 +91,7 @@ Blockly.Blocks['frente'] = {
       this.appendValueInput("valor_frente")
           .setCheck("Number")
           .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Ir para frente por");
+          .appendField("Ir para frenteee por");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -104,7 +104,7 @@ Blockly.Blocks['frente'] = {
       this.appendValueInput("valor_tras")
           .setCheck("Number")
           .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Ir para tras por");
+          .appendField("Ir para traaas por");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -115,10 +115,9 @@ Blockly.Blocks['frente'] = {
 
   Blockly.Blocks['esquerda'] = {
     init: function() {
-      this.appendValueInput("valor_esquerda")
-          .setCheck("Number")
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Virar a esquerda por");
+      this.appendDummyInput()
+          .appendField("Esquerda")
+          .appendField(new Blockly.FieldDropdown([["0°","0"], ["45°","45"],["90°","90"],["180°","180"],["270º","270"],["360°","360"]]), "valor_esquerda");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -129,10 +128,9 @@ Blockly.Blocks['frente'] = {
 
   Blockly.Blocks['direita'] = {
     init: function() {
-      this.appendValueInput("valor_direita")
-          .setCheck("Number")
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Virar a direita por");
+      this.appendDummyInput()
+        .appendField("Direita")
+        .appendField(new Blockly.FieldDropdown([["0°","0"], ["45°","45"],["90°","90"],["180°","180"],["270º","270"],["360°","360"]]), "valor_direita");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -140,6 +138,9 @@ Blockly.Blocks['frente'] = {
    this.setHelpUrl("");
     }
   };
+
+
+ 
 
   Blockly.Blocks['se'] = {
     init: function() {
@@ -436,21 +437,22 @@ Blockly.Blocks['frente'] = {
 
 
   javascript.javascriptGenerator.forBlock['esquerda'] = function(block, generator) {
-    var value_valor_esquerda = generator.valueToCode(block, 'valor_esquerda', javascript.Order.ATOMIC);
-    var code = 'esquerda:'+value_valor_esquerda+'\n;';
+    var value_valor_esquerda = block.getFieldValue('valor_esquerda');
+    var code = 'esquerda;'+value_valor_esquerda+'\n';
     return code;
   };
 
   javascript.javascriptGenerator.forBlock['direita'] = function(block, generator) {
-    var value_valor_direita = generator.valueToCode(block, 'valor_direita', javascript.Order.ATOMIC);
-    var code = 'direita:'+value_valor_direita+'\n;';
+    var value_valor_direita = block.getFieldValue('valor_direita');
+    var code = 'direita;'+value_valor_direita+'\n';
     return code;
   };
+
 
   javascript.javascriptGenerator.forBlock['frente'] = function(block, generator) {
     var value_valor_frente = generator.valueToCode(block, 'valor_frente', javascript.Order.ATOMIC);
     if(value_valor_frente){
-        var code = 'frente:'+value_valor_frente+';\n';
+        var code = 'fre;'+value_valor_frente+'\n';
     }
     else{
         var code = 'frente_error';
@@ -460,7 +462,7 @@ Blockly.Blocks['frente'] = {
 
   javascript.javascriptGenerator.forBlock['tras'] = function(block, generator) {
     var value_valor_tras = generator.valueToCode(block, 'valor_tras', javascript.Order.ATOMIC);
-    var code = 'tras:'+value_valor_tras+';\n';
+    var code = 'tras;'+value_valor_tras+'\n';
     return code;
   };
 
