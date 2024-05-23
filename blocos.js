@@ -227,7 +227,7 @@ Blockly.Blocks['frente'] = {
       this.appendDummyInput()
           .appendField("PWM")
           .appendField(new Blockly.FieldDropdown([["LED2","led2"], ["Motor","motor"], ["",""]]), "choice")
-          .appendField(new Blockly.FieldDropdown([["100%","1023"], ["75%","767"], ["50%","512"],["25%","256"],["0%","0"]]), "valor")
+          .appendField(new Blockly.FieldDropdown([["100%","1023"], ["75%","767"], ["50%","512"],["0%","0"]]), "valor")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
