@@ -1,4 +1,7 @@
-
+async function voltarMenuConfig() {
+  await app.atualizaVariaveis_off();
+  app.changeLevel('menu');
+}
 
 class App {
     constructor() {
@@ -77,7 +80,7 @@ renderConfig(appContainer){
     buttonMenu.innerText = 'Menu';
     menuContainer.appendChild(buttonMenu);
     buttonMenu.onclick = () => {
-      app.changeLevel('menu');
+      voltarMenuConfig();
     };
 
     const buttonCarregarValorFirebase = document.createElement('button');
@@ -239,7 +242,7 @@ updateVariable(direction, degree, value) {
           variavelDisplay.innerText = `: Erro de comunicação`;
         }
         });
-     
+        app.atualizaVariaveis_off();
   }
 
   if (direction === 'direita') {
