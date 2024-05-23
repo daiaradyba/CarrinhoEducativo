@@ -183,7 +183,7 @@ renderConfig(appContainer){
 
     // Cria e adiciona o dropdown para '0º/45º/90º/270º/360º'
     const selectDegrees = document.createElement('select');
-    ['0º', '45º', '90º', '270º', '360º'].forEach(degree => {
+    ['0º', '45º','180º', '90º', '270º', '360º'].forEach(degree => {
         const option = document.createElement('option');
         option.value = degree;
         option.text = degree;
