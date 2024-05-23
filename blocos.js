@@ -196,6 +196,46 @@ Blockly.Blocks['frente'] = {
     }
   };
 
+  Blockly.Blocks['sensor_proximidade_choice'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Sensor de Proximidade")
+          .appendField(new Blockly.FieldDropdown([["frente","1"], ["trás","2"], ["",""]]), "sensor")
+          .appendField(new Blockly.FieldDropdown([["ativado","1"], ["desativado","0"], ["",""]]), "status");
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['sensor_black_choice'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Sensor de Cor")
+          .appendField(new Blockly.FieldDropdown([["frente","3"], ["trás","4"], ["",""]]), "sensor")
+          .appendField(new Blockly.FieldDropdown([["detectou preto","1"], ["não detectou preto","0"], ["",""]]), "status");
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['pwm'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("PWM")
+          .appendField(new Blockly.FieldDropdown([["LED2","led2"], ["Motor","motor"], ["",""]]), "choice")
+          .appendField(new Blockly.FieldDropdown([["100%","1023"], ["75%","767"], ["50%","565"],["25%","20"],["0%","0"]]), "valor")
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
 
   Blockly.Blocks['status_choice'] = {
     init: function() {
@@ -352,6 +392,48 @@ Blockly.Blocks['frente'] = {
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
 
+  };
+
+  javascript.javascriptGenerator.forBlock['sensor_proximidade_choice'] = function(block, generator) {
+    var dropdown_sensor = block.getFieldValue('sensor');
+    var dropdown_status = block.getFieldValue('status');
+    var code;
+    if(dropdown_status === '0'){
+      code = '<SENSOR*'+ dropdown_sensor+'<VALOR*160' ;
+    }
+    else if(dropdown_status === '1'){
+      code = '>SENSOR*'+ dropdown_sensor+'>VALOR*160'
+    }
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  javascript.javascriptGenerator.forBlock['sensor_black_choice'] = function(block, generator) {
+    var dropdown_sensor = block.getFieldValue('sensor');
+    var dropdown_status = block.getFieldValue('status');
+    var code;
+    if(dropdown_status === '1'){
+      code = '<SENSOR*'+ dropdown_sensor+'<VALOR*160' ;
+    }
+    else if(dropdown_status === '0'){
+      code = '>SENSOR*'+ dropdown_sensor+'>VALOR*160'
+    }
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  javascript.javascriptGenerator.forBlock['pwm'] = function(block, generator) {
+    var dropdown_choice = block.getFieldValue('choice');
+    var dropdown_valor = block.getFieldValue('valor');
+    var code;
+    if(dropdown_choice === 'led2'){
+      code = 'pwmled;'+dropdown_valor+'\n' ;
+    }
+    else if(dropdown_choice === 'motor'){
+      code = 'pwmm;'+dropdown_valor+'\n';
+    }
+    // TODO: Change ORDER_NONE to the correct strength.
+    return code;
   };
 
   javascript.javascriptGenerator.forBlock['while'] = function(block, generator) {
