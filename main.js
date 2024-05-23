@@ -1,4 +1,16 @@
 const app = new App();
+let v_e_0 = 200;
+let v_e_45 = 200;
+let v_e_90 = 200;
+let v_e_180 = 200;
+let v_e_270 = 200;
+let v_e_360 = 200;
+let v_d_0 = 200;
+let v_d_45 = 200;
+let v_d_90 = 200;
+let v_d_180 = 200;
+let v_d_270 = 200;
+let v_d_360 = 200;
 
 // Cria os níveis
 const level1 = new Level(
@@ -24,6 +36,7 @@ const level3 = new Level(
     '3.png'
     );  
 
+
   
 
 // Adiciona os níveis ao aplicativo
@@ -33,5 +46,14 @@ app.addLevel(level3);
 
 
 database = firebase.database();
+
+
+
+async function inicializarApp() {
+  await app.atualizaVariaveis_off();
+  console.log("v_e_0 main = " + app.v_e_0); // Apenas após a atualização completa
+  app.changeLevel('menu');
+}
+inicializarApp(); // Chamada da função assíncrona
 // Inicializa a renderização do app no nível desejado
-app.changeLevel('menu');
+

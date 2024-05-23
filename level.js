@@ -82,7 +82,7 @@ render(appContainer) {
     // Primeiro, limpa o conteúdo atual do appContainer
     appContainer.innerHTML = '';
 
-   
+   this.atualizaVariaveis();
 
     // Cria o container das instruções e o botão de iniciar
     const instructionsContainer = document.createElement('div');
@@ -286,6 +286,49 @@ render(appContainer) {
         const xml = Blockly.Xml.workspaceToDom(this.workspace);
         const xmlText = Blockly.utils.xml.domToText(xml);
         localStorage.setItem(this.xmlWorkspaceKey, xmlText);
+      }
+    }
+
+    atualizaVariaveis(){
+      //Atualizando variaiveis do firebase
+  for (let i = 0; i < 6; i++) {
+    
+    let var_firebase = 0;
+      console.log("for "+i);
+      switch(i){
+        case 0:
+          var_firebase = 0;
+          break;
+        case 1:
+          var_firebase = 45;
+          break;
+        case 2:
+          var_firebase = 90;
+          break;
+        case 3:
+          var_firebase = 180;
+          break;
+        case 4:
+          var_firebase = 270;
+          break;
+        case 5:
+          var_firebase = 360;
+          break;
+    
+    
+      }
+        firebase.database().ref(`/variaveis/v_e_${var_firebase}`).once('value').then((snapshot) => {
+           window['v_e_' + var_firebase] = snapshot.val(); // Atualiza a variável local
+          // console.log('v_e_'+var_firebase+ '=' + window['v_e_' + var_firebase]);
+        }).catch((error) => {
+            console.error(`Erro ao buscar dados do sensor ${i}:`, error);
+        });
+        firebase.database().ref(`/variaveis/v_d_${var_firebase}`).once('value').then((snapshot) => {
+          window['v_d_' + var_firebase] = snapshot.val(); // Atualiza a variável local
+         }).catch((error) => {
+          console.error(`Erro ao buscar dados do sensor ${i}:`, error);
+
+          });
       }
     }
   

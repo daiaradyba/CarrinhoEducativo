@@ -58,6 +58,15 @@ html, body {
     border-radius: 5px; /* Borda arredondada */
     z-index: 10;
   }
+  .dropdown {
+    padding: 10px 20px; /* Ajusta o tamanho dos botões */
+    margin: 0 5px; /* Adiciona uma margem entre os botões */
+    cursor: pointer; /* Muda o cursor para indicar que são clicáveis */
+    background-color: #f0f0f0; /* Cor de fundo */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 5px; /* Borda arredondada */
+    z-index: 10;
+  }
 #tituloDiv {
     position: absolute; /* Posiciona o título de forma absoluta */
     top: 0; /* Alinha o título ao topo do container */
