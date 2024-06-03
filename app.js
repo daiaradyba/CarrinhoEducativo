@@ -1,7 +1,4 @@
-async function voltarMenuConfig() {
-  await app.atualizaVariaveis_off();
-  app.changeLevel('menu');
-}
+
 
 class App {
     constructor() {
@@ -46,7 +43,7 @@ Aqui eu nao tava voltando  o menu para menu
   
 renderMenu(appContainer) {
       // Limpa o conteúdo atual
-      appContainer.innerHTML = '<h1>Blockly Code Generator</h1>';
+      appContainer.innerHTML = '<h1>Módulo</h1>';
   
       Object.keys(this.levels).forEach(levelName => {
         const button = document.createElement('button');
@@ -60,10 +57,25 @@ renderMenu(appContainer) {
       const b_config = document.createElement('b_config');
       b_config.className = 'button';
       b_config.innerText = 'CONFIGURAÇÃO';
-      appContainer.appendChild(b_config);
+     // appContainer.appendChild(b_config);
       b_config.onclick = () => {
         this.changeLevel("config");
       };
+
+    // Botão para retornar ao menu de módulos
+    const b_r_mod = document.createElement('button');
+    b_r_mod.className = 'button';
+    b_r_mod.innerText = 'Retornar';
+    appContainer.appendChild(b_r_mod);
+    b_r_mod.onclick = () => {
+        // Garanta que appModulos está acessível aqui
+        if (typeof appModulos !== 'undefined') {
+          this.currentLevelName = 'menu'; // Resetar para o menu ao sair do módulo
+          console.log("acessei");
+          appModulos.renderModules(appContainer);
+        }
+    };
+
 
 
 

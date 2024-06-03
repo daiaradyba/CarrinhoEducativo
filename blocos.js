@@ -592,7 +592,7 @@ Blockly.Blocks['frente'] = {
         });
         code += trimmedLines.join('\n');
     }
-    code += '\n';  // Adiciona quebra de linha ao final para separar de outros blocos
+    //code += '\n';  // Adiciona quebra de linha ao final para separar de outros blocos
 
     return code;
   }
