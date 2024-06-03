@@ -96,7 +96,7 @@ render(appContainer) {
    
     appContainer.appendChild(instructionsContainer);
     const buttonStart = document.getElementById('b_Start');
-    buttonStart.innerText = 'Iniciar Level';
+    buttonStart.innerText = `Iniciar ${this.name}`;
     buttonStart.className = 'button start-level-btn';
 
   

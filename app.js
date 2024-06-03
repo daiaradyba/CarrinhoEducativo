@@ -1,9 +1,10 @@
 
 
 class App {
-    constructor() {
+    constructor(nameModulo) {
       this.levels = {};
       this.currentLevelName = 'menu';
+      this.nameModulo = nameModulo;
     }
   
     addLevel(level) {
@@ -43,12 +44,26 @@ Aqui eu nao tava voltando  o menu para menu
   
 renderMenu(appContainer) {
       // Limpa o conteúdo atual
-      appContainer.innerHTML = '<h1>Módulo</h1>';
+      appContainer.innerHTML = `<h1>${this.nameModulo}</h1>`;
+
+          // Botão para retornar ao menu de módulos
+        const b_r_mod = document.createElement('button');
+       b_r_mod.className = 'button';
+    b_r_mod.innerText = 'Retornar';
+    appContainer.appendChild(b_r_mod);
+    b_r_mod.onclick = () => {
+        // Garanta que appModulos está acessível aqui
+        if (typeof appModulos !== 'undefined') {
+          this.currentLevelName = 'menu'; // Resetar para o menu ao sair do módulo
+          console.log("acessei");
+          appModulos.renderModules(appContainer);
+        }
+    };
   
       Object.keys(this.levels).forEach(levelName => {
         const button = document.createElement('button');
         button.className = 'button';
-        button.innerText = `LEVEL ${levelName.toUpperCase()}`;
+        button.innerText = `${levelName.toUpperCase()}`;
         button.onclick = () => {
           this.changeLevel(levelName);
         };
@@ -62,19 +77,7 @@ renderMenu(appContainer) {
         this.changeLevel("config");
       };
 
-    // Botão para retornar ao menu de módulos
-    const b_r_mod = document.createElement('button');
-    b_r_mod.className = 'button';
-    b_r_mod.innerText = 'Retornar';
-    appContainer.appendChild(b_r_mod);
-    b_r_mod.onclick = () => {
-        // Garanta que appModulos está acessível aqui
-        if (typeof appModulos !== 'undefined') {
-          this.currentLevelName = 'menu'; // Resetar para o menu ao sair do módulo
-          console.log("acessei");
-          appModulos.renderModules(appContainer);
-        }
-    };
+
 
 
 

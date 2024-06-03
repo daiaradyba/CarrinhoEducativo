@@ -36,7 +36,7 @@ class App_Modulos {
        
         appContainer.appendChild(instructionsContainer);
         const buttonStart = document.getElementById('b_Start');
-        buttonStart.innerText = 'Iniciar Level';
+        buttonStart.innerText = `Iniciar Módulo ${this.currentModuleName}`;
         buttonStart.className = 'button start-level-btn';
     
 
@@ -92,15 +92,55 @@ class App_Modulos {
                 voltarMenuConfig(); // ta no inicio de app.js
               };
           
-              const buttonCarregarValorFirebase = document.createElement('button');
-              buttonCarregarValorFirebase.className = 'button';
-              buttonCarregarValorFirebase.innerText = 'Carregar valor do Carrinho';
-              menuContainer.appendChild(buttonCarregarValorFirebase);
-              buttonCarregarValorFirebase.onclick = () => {
-                  console.log('buttonCarregarValorFirebase');
-              };
-          
+
               appContainer.appendChild(menuContainer);
+
+               // Cria e adiciona o contêiner para os demais controles
+               const controlsContainer = document.createElement('div');
+               appContainer.appendChild(controlsContainer);
+           
+               // Cria e adiciona o dropdown para 'esquerda/direita'
+               const selectDirection = document.createElement('select');
+               ['esquerda', 'direita'].forEach(direction => {
+                   const option = document.createElement('option');
+                   option.value = direction;
+                   option.text = direction;
+                   selectDirection.appendChild(option);
+               });
+               selectDirection.className = 'dropdown';
+               controlsContainer.appendChild(selectDirection);
+           
+               // Cria e adiciona o dropdown para '0º/45º/90º/270º/360º'
+               const selectDegrees = document.createElement('select');
+               ['0º', '45º','180º', '90º', '270º', '360º'].forEach(degree => {
+                   const option = document.createElement('option');
+                   option.value = degree;
+                   option.text = degree;
+                   selectDegrees.appendChild(option);
+               });
+               selectDegrees.className = 'dropdown';
+               controlsContainer.appendChild(selectDegrees);
+           
+               // Cria e adiciona o campo de entrada numérica
+               const inputNumber = document.createElement('input');
+               inputNumber.type = 'number';
+               controlsContainer.appendChild(inputNumber);
+           
+               // Cria e adiciona o texto 'ms'
+               const textMs = document.createElement('span');
+               textMs.innerText = 'ms';
+               controlsContainer.appendChild(textMs);
+           
+               // Cria e adiciona o botão 'Enviar'
+               const buttonAtt= document.createElement('button');
+               buttonAtt.innerText = 'Atualizar';
+               buttonAtt.className = 'button';
+               controlsContainer.appendChild(buttonAtt);
+               
+               buttonAtt.onclick = () => {
+                 this.updateVariable(selectDirection.value, selectDegrees.value, inputNumber.value);
+               };
+           
           
               // Cria um contêiner flexível para "Esquerda" e "Direita"
               const flexContainer_all = document.createElement('div');
@@ -175,52 +215,7 @@ class App_Modulos {
              
               flexContainer_all.appendChild(div_direitas);
               flexContainer_all.appendChild(div_esquerdas);
-              // Cria e adiciona o contêiner para os demais controles
-              const controlsContainer = document.createElement('div');
-              appContainer.appendChild(controlsContainer);
-          
-              // Cria e adiciona o dropdown para 'esquerda/direita'
-              const selectDirection = document.createElement('select');
-              ['esquerda', 'direita'].forEach(direction => {
-                  const option = document.createElement('option');
-                  option.value = direction;
-                  option.text = direction;
-                  selectDirection.appendChild(option);
-              });
-              selectDirection.className = 'dropdown';
-              controlsContainer.appendChild(selectDirection);
-          
-              // Cria e adiciona o dropdown para '0º/45º/90º/270º/360º'
-              const selectDegrees = document.createElement('select');
-              ['0º', '45º','180º', '90º', '270º', '360º'].forEach(degree => {
-                  const option = document.createElement('option');
-                  option.value = degree;
-                  option.text = degree;
-                  selectDegrees.appendChild(option);
-              });
-              selectDegrees.className = 'dropdown';
-              controlsContainer.appendChild(selectDegrees);
-          
-              // Cria e adiciona o campo de entrada numérica
-              const inputNumber = document.createElement('input');
-              inputNumber.type = 'number';
-              controlsContainer.appendChild(inputNumber);
-          
-              // Cria e adiciona o texto 'ms'
-              const textMs = document.createElement('span');
-              textMs.innerText = 'ms';
-              controlsContainer.appendChild(textMs);
-          
-              // Cria e adiciona o botão 'Enviar'
-              const buttonAtt= document.createElement('button');
-              buttonAtt.innerText = 'Atualizar';
-              buttonAtt.className = 'button';
-              controlsContainer.appendChild(buttonAtt);
-              
-              buttonAtt.onclick = () => {
-                this.updateVariable(selectDirection.value, selectDegrees.value, inputNumber.value);
-              };
-          
+             
     }
 
     updateVariable(direction, degree, value) {
