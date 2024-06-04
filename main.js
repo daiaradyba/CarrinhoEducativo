@@ -7,6 +7,15 @@ const app_modulo4 = new App("PWM"); //Um app para cada modulo
 const app_modulo5 = new App("Buzzer"); //Um app para cada modulo
 const app_modulo6 = new App("Desafio"); //Um app para cada modulo
 
+// Definição de cores em HSL
+const colors = {
+  modulo1: { h: 277, s: 79, l: 81 },
+  modulo2: { h: 60, s: 96, l: 79 },
+  modulo3: { h: 214, s: 84, l: 74 },
+  modulo4: { h: 338, s: 100, l: 81 },
+  modulo5: { h: 3, s: 100, l: 69 },
+  
+};
 
 let v_e_0 = 200;
 let v_e_45 = 200;
@@ -261,12 +270,12 @@ app_modulo6.addLevel(mod6_1);
 database = firebase.database();
 
 // Adiciona apps de módulos ao app de módulos
-appModulos.addModule("LEDs", app_modulo1,'3.png');
-appModulos.addModule("Motores", app_modulo2,'3.png');
-appModulos.addModule("Sensores", app_modulo3,'3.png');
-appModulos.addModule("PWM", app_modulo4,'3.png');
-appModulos.addModule("Buzzer", app_modulo5,'3.png');
-appModulos.addModule("Desafio", app_modulo6,'3.png');
+appModulos.addModule("LEDs", app_modulo1,'3.png',colors.modulo1);
+appModulos.addModule("Motores", app_modulo2,'3.png',colors.modulo2);
+appModulos.addModule("Sensores", app_modulo3,'3.png',colors.modulo3);
+appModulos.addModule("PWM", app_modulo4,'3.png',colors.modulo4);
+appModulos.addModule("Buzzer", app_modulo5,'3.png',colors.modulo5);
+appModulos.addModule("Desafio", app_modulo6,'3.png',colors.modulo1);
 
 async function inicializarApp() {
   await app_modulo1.atualizaVariaveis_off();

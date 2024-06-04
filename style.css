@@ -94,7 +94,7 @@ html, body {
     border: 1px solid #888;
     border-radius: 4px;
     box-sizing: border-box;
-    position:absolute;
+    position:flex;
     width: 90vw; /* Define a largura máxima para o container que inclui Blockly */
     height: 70vh; /* Define a altura máxima para o container */
     z-index: 1;
@@ -157,7 +157,7 @@ html, body {
     border-radius: 8px;
     background: hsl(248, 53%, 58%);
     padding: 16px 32px;
-    color: white;
+    color: rgb(255, 255, 255);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 600;

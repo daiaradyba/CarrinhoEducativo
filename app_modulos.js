@@ -4,6 +4,30 @@ async function voltarMenuConfig() {
     appModulos.renderModules(appContainer);
   }
 
+  function calculateShadowColor(hsl) {
+    const h = hsl.h; // Mantém o mesmo matiz
+    let s = hsl.s; // Saturação
+    let l = hsl.l; // Luminosidade
+
+    // Ajustar a luminosidade e a saturação para a sombra
+    // Aumentar luminosidade e reduzir saturação
+    s = Math.max(0, s - 40); // Reduz a saturação em 20%
+    l = Math.min(100, l + 40); // Aumenta a luminosidade em 20%
+
+    return { h, s, l };
+}
+function generateGradientColors(hslBase) {
+    const { h, s, l } = hslBase;
+    
+    // Calcula cores mais escuras e mais claras
+    const darker = `hsl(${h}, ${Math.max(20, s - 10)}%, ${Math.max(20, l - 20)}%)`;
+    const darkerCenter = `hsl(${h}, ${Math.max(25, s - 5)}%, ${Math.max(25, l - 15)}%)`;
+    const lighterCenter = `hsl(${h}, ${Math.max(30, s)}%, ${Math.min(100, l + 10)}%)`;
+    const lightest = `hsl(${h}, ${Math.max(35, s - 10)}%, ${Math.min(100, l + 15)}%)`;
+
+    return { darker, darkerCenter, lighterCenter, lightest };
+}
+
 class App_Modulos {
     constructor() {
         this.modules = {};
@@ -11,8 +35,8 @@ class App_Modulos {
         
     }
 
-    addModule(name, app, instructionsImg) {
-        this.modules[name] = app;
+    addModule(name, app, instructionsImg,color) {
+        this.modules[name] = { app: app, instructionsImg: instructionsImg, color: color }
         this.instructionsImg = instructionsImg;
     }
 
@@ -48,7 +72,8 @@ class App_Modulos {
             }
     
             else {
-                this.modules[this.currentModuleName].render();
+                console.log(this.modules[this.currentModuleName]);
+                this.modules[this.currentModuleName].app.render();
             }
         
         };
@@ -58,6 +83,7 @@ class App_Modulos {
     renderModules(appContainer) {
         appContainer.innerHTML = '';
         Object.keys(this.modules).forEach(moduleName => {
+            const module = this.modules[moduleName];
             // Cria o elemento button
             const button = document.createElement('button');
             button.className = 'pushable';
@@ -74,6 +100,33 @@ class App_Modulos {
             const front = document.createElement('span');
             front.className = 'front';
             front.textContent = moduleName;  // Definindo o texto como o nome do módulo
+
+
+            // Suponha que cada módulo tenha uma propriedade color em formato HSL
+            const hslColor = this.modules[moduleName].color; // Objeto { h, s, l }
+
+            const hslCor_Fraca = { h: 60, s: 96, l: 79 };
+            if(hslColor.h == hslCor_Fraca.h){
+                console.log("entrei");
+                front.style.color = "#808080"; //troca cor da fonte
+            }
+
+            const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
+   
+            const gradientColors = generateGradientColors(hslColor);
+
+            // Aplicar gradiente no estilo do `.edge`
+            edge.style.background = `linear-gradient(
+                to right,
+                ${gradientColors.darker} 0%,
+                ${gradientColors.darkerCenter} 8%,
+                ${gradientColors.lighterCenter} 92%,
+                ${gradientColors.lightest} 100%
+            )`;
+            // Aplica a cor ao front e a sombra ao shadow
+            front.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+            shadow.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+   
         
             // Anexa os spans ao botão
             button.appendChild(shadow);
