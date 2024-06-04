@@ -58,12 +58,34 @@ class App_Modulos {
     renderModules(appContainer) {
         appContainer.innerHTML = '';
         Object.keys(this.modules).forEach(moduleName => {
+            // Cria o elemento button
             const button = document.createElement('button');
-            button.innerText = `${moduleName}`;
-            button.className = 'button';
+            button.className = 'pushable';
+        
+            // Cria o span para a sombra
+            const shadow = document.createElement('span');
+            shadow.className = 'shadow';
+        
+            // Cria o span para a borda
+            const edge = document.createElement('span');
+            edge.className = 'edge';
+        
+            // Cria o span para a frente (parte visível com texto)
+            const front = document.createElement('span');
+            front.className = 'front';
+            front.textContent = moduleName;  // Definindo o texto como o nome do módulo
+        
+            // Anexa os spans ao botão
+            button.appendChild(shadow);
+            button.appendChild(edge);
+            button.appendChild(front);
+        
+            // Define a função de clique
             button.onclick = () => {
                 this.changeModule(moduleName);
             };
+        
+            // Anexa o botão ao container
             appContainer.appendChild(button);
         });
          // Adiciona o botão de configuração
