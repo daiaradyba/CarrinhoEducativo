@@ -90,8 +90,25 @@ class App_Modulos {
         });
          // Adiciona o botão de configuração
          const configButton = document.createElement('button');
-         configButton.innerText = 'Configuração';
-         configButton.className = 'button';
+         configButton.className = 'pushable';
+
+         // Cria o span para a sombra
+         const shadow = document.createElement('span');
+         shadow.className = 'shadow';
+     
+         // Cria o span para a borda
+         const edge = document.createElement('span');
+         edge.className = 'edge';
+     
+         // Cria o span para a frente (parte visível com texto)
+         const front = document.createElement('span');
+         front.className = 'front';
+         front.textContent = 'Configuração';  // Definindo o texto como o nome do módulo
+     
+        configButton.appendChild(shadow);
+        configButton.appendChild(edge);
+        configButton.appendChild(front);
+
          configButton.onclick = () => {
              this.renderConfig(appContainer);
          };

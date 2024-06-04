@@ -9,7 +9,7 @@ html, body {
     align-items: center;
     overflow: scroll;
     display: flex;
-gap: 32px;
+    gap: 32px;
 }
 
 .container {
@@ -65,7 +65,7 @@ gap: 32px;
     background: var(--base-black, #e99d9d);
     color: #FFF;
 
-    text-align: right;
+    text-align: center;
     /* PJ/Bold/18px */
     font-family: "Plus Jakarta Sans";
     font-size: 18px;
@@ -115,8 +115,8 @@ gap: 32px;
     margin: 5px;  /* Adiciona espaço à direita de cada botão */
   }
   #app { /* Supondo que appContainer tenha o ID 'app' */
-    display:block;
-    flex-direction: row; /* ou column para vertical */
+    display:flex;
+    flex-direction: column; /* ou column para vertical */
     gap: 5px;  /* Define o espaço entre os itens do flexbox */
     padding-top: 20px;  /* Adiciona espaço no topo do contêiner */
 }
