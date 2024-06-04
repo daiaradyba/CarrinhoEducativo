@@ -115,7 +115,7 @@ gap: 32px;
     margin: 5px;  /* Adiciona espaço à direita de cada botão */
   }
   #app { /* Supondo que appContainer tenha o ID 'app' */
-    display: flex;
+    display:block;
     flex-direction: row; /* ou column para vertical */
     gap: 5px;  /* Define o espaço entre os itens do flexbox */
     padding-top: 20px;  /* Adiciona espaço no topo do contêiner */
