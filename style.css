@@ -117,7 +117,7 @@ html, body {
   #app { /* Supondo que appContainer tenha o ID 'app' */
     display:flex;
     flex-direction: column; /* ou column para vertical */
-    gap: 20px;  /* Define o espaço entre os itens do flexbox */
+    gap: 10px;  /* Define o espaço entre os itens do flexbox */
     padding-top: 20px;  /* Adiciona espaço no topo do contêiner */
 }
 
