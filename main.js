@@ -37,7 +37,7 @@ const mod1_1 = new Level(
   'blocklyWorkspace_mod1_1',
   '<category name="LED" colour="#F33D49"><block type="for"></block><block type="duracao_nota"></block><block type="buzzer_nota"></block><block type="buzzer_melodia"></block><block type="pwm"></block><block type="sensor_black_choice"></block><block type="sensor_proximidade_choice"></block><block type="monitorar"></block><block type="valor"></block><block type="diferente"></block><block type="maior"></block><block type="menor"></block><block type="igual"></block><block type="sensor_choice"></block><block type="status_choice"></block><block type="led_choice"></block><block type="se"></block><block type="while"></block><block type="ler"></block><block type="ligarled"></block><block type="desligarled"></block><block type="esperar"></block></category><category name="Controles Carro lvl 1 " colour="#F33D49"><block type="start"></block><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block></category><category name="Lógica" colour="#774AD9"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></category><category name="Laços" colour="#5ED905"><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block><block type="controls_whileUntil"></block></category><category name="Matemática" colour="#E80C7A"><block type="math_number"></block><block type="math_arithmetic"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
   app_modulo1,
-  '1.png'
+  'assets/M_LED_F1.jpeg'
 );
 const mod1_2 = new Level(
   'Fase 2',
@@ -270,8 +270,8 @@ app_modulo6.addLevel(mod6_1);
 database = firebase.database();
 
 // Adiciona apps de módulos ao app de módulos
-appModulos.addModule("LEDs", app_modulo1,'3.png',colors.modulo1);
-appModulos.addModule("Motores", app_modulo2,'3.png',colors.modulo2);
+appModulos.addModule("LEDs", app_modulo1,'assets/M_LED.jpeg',colors.modulo1);
+appModulos.addModule("Motores", app_modulo2,'1.png',colors.modulo2);
 appModulos.addModule("Sensores", app_modulo3,'3.png',colors.modulo3);
 appModulos.addModule("PWM", app_modulo4,'3.png',colors.modulo4);
 appModulos.addModule("Buzzer", app_modulo5,'3.png',colors.modulo5);

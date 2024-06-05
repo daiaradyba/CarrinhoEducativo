@@ -31,28 +31,29 @@ function generateGradientColors(hslBase) {
 class App_Modulos {
     constructor() {
         this.modules = {};
+        this.instructionsImg = {};
         this.currentModuleName = null;
         
     }
 
     addModule(name, app, instructionsImg,color) {
         this.modules[name] = { app: app, instructionsImg: instructionsImg, color: color }
-        this.instructionsImg = instructionsImg;
+        this.instructionsImg[name] = instructionsImg;
     }
 
     changeModule(moduleName) {
         this.currentModuleName = moduleName;
-        this.render();
+        this.render(moduleName);
     }
 
-    render() {
+    render(moduleName) {
         const appContainer = document.getElementById('app');
         appContainer.innerHTML = '';
 
         const instructionsContainer = document.createElement('div');
 
         instructionsContainer.className = 'instructions-container';
-        instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start">Start Level</button><img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">`;
+        instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start">Start Level</button><img src="${this.instructionsImg[moduleName]}" alt="Instructions" class="instructions-img">`;
     
     
     
@@ -60,9 +61,58 @@ class App_Modulos {
        
         appContainer.appendChild(instructionsContainer);
         const buttonStart = document.getElementById('b_Start');
-        buttonStart.innerText = `Iniciar Módulo ${this.currentModuleName}`;
-        buttonStart.className = 'button start-level-btn';
+        //----------------------
+
+        buttonStart.className = 'pushable';
     
+        // Cria o span para a sombra
+        const shadow = document.createElement('span');
+        shadow.className = 'shadow';
+    
+        // Cria o span para a borda
+        const edge = document.createElement('span');
+        edge.className = 'edge';
+    
+        // Cria o span para a frente (parte visível com texto)
+        const front = document.createElement('span');
+        front.className = 'front';
+        front.textContent = 'Iniciar Módulo '+moduleName;  // Definindo o texto como o nome do módulo
+
+
+        // Suponha que cada módulo tenha uma propriedade color em formato HSL
+        const hslColor = this.modules[moduleName].color; // Objeto { h, s, l }
+
+        const hslCor_Fraca = { h: 60, s: 96, l: 79 };
+        if(hslColor.h == hslCor_Fraca.h){
+            console.log("entrei");
+            front.style.color = "#808080"; //troca cor da fonte
+        }
+
+        const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
+
+        const gradientColors = generateGradientColors(hslColor);
+
+        // Aplicar gradiente no estilo do `.edge`
+        edge.style.background = `linear-gradient(
+            to right,
+            ${gradientColors.darker} 0%,
+            ${gradientColors.darkerCenter} 8%,
+            ${gradientColors.lighterCenter} 92%,
+            ${gradientColors.lightest} 100%
+        )`;
+        edge.style.height = '80%';
+        edge.style.marginTop = "15px";
+
+        // Aplica a cor ao front e a sombra ao shadow
+        front.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+        shadow.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+    
+        // Anexa os spans ao botão
+        buttonStart.appendChild(shadow);
+        buttonStart.appendChild(edge);
+        buttonStart.appendChild(front);
+
 
         buttonStart.onclick = () => {
        
