@@ -122,7 +122,6 @@ class App_Modulos {
             }
     
             else {
-                console.log(this.modules[this.currentModuleName]);
                 this.modules[this.currentModuleName].app.render();
             }
         

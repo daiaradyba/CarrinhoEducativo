@@ -1,11 +1,6 @@
 const appModulos = new App_Modulos(); //Camada mais abstrata. contem todo os modulos
 
-const app_modulo1 = new App("LEDs"); //Um app para cada modulo
-const app_modulo2 = new App("Motores"); //Um app para cada modulo
-const app_modulo3 = new App("Sensores"); //Um app para cada modulo
-const app_modulo4 = new App("PWM"); //Um app para cada modulo
-const app_modulo5 = new App("Buzzer"); //Um app para cada modulo
-const app_modulo6 = new App("Desafio"); //Um app para cada modulo
+
 
 // Definição de cores em HSL
 const colors = {
@@ -16,6 +11,13 @@ const colors = {
   modulo5: { h: 3, s: 100, l: 69 },
   
 };
+
+const app_modulo1 = new App("LEDs",colors.modulo1); //Um app para cada modulo
+const app_modulo2 = new App("Motores",colors.modulo2); //Um app para cada modulo
+const app_modulo3 = new App("Sensores",colors.modulo3); //Um app para cada modulo
+const app_modulo4 = new App("PWM",colors.modulo4); //Um app para cada modulo
+const app_modulo5 = new App("Buzzer",colors.modulo5); //Um app para cada modulo
+const app_modulo6 = new App("Desafio",colors.modulo1); //Um app para cada modulo
 
 let v_e_0 = 200;
 let v_e_45 = 200;

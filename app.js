@@ -1,10 +1,11 @@
 
 
 class App {
-    constructor(nameModulo) {
+    constructor(nameModulo,color) {
       this.levels = {};
       this.currentLevelName = 'menu';
       this.nameModulo = nameModulo;
+      this.color = color;
     }
   
     addLevel(level) {
@@ -48,27 +49,109 @@ renderMenu(appContainer) {
 
           // Botão para retornar ao menu de módulos
         const b_r_mod = document.createElement('button');
-       b_r_mod.className = 'button';
-    b_r_mod.innerText = 'Retornar';
-    appContainer.appendChild(b_r_mod);
-    b_r_mod.onclick = () => {
+        b_r_mod.className = 'return';
+
+       // Cria o elemento SVG
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 384 512');
+        svg.classList.add('svgIcon');
+
+        // Cria o elemento path para o SVG
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z');
+
+        // Adiciona o path ao SVG
+        svg.appendChild(path);
+
+        // Adiciona o SVG ao botão
+        b_r_mod.appendChild(svg);
+        b_r_mod.style.backgroundColor = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
+
+        const hslCor_Fraca = { h: 60, s: 96, l: 79 };
+        if(this.color.h == hslCor_Fraca.h){
+          b_r_mod.style.setProperty('--before-text-color', '#808080');
+          b_r_mod.style.setProperty('--svgIcon-fill-color', '#808080');
+        }
+        else{
+          b_r_mod.style.setProperty('--before-text-color', 'white');
+          b_r_mod.style.setProperty('--svgIcon-fill-color', 'white');
+        }
+
+        appContainer.appendChild(b_r_mod);
+        b_r_mod.onclick = () => {
         // Garanta que appModulos está acessível aqui
         if (typeof appModulos !== 'undefined') {
           this.currentLevelName = 'menu'; // Resetar para o menu ao sair do módulo
           console.log("acessei");
           appModulos.renderModules(appContainer);
-        }
-    };
+          }
+        };
   
       Object.keys(this.levels).forEach(levelName => {
+        
+            
         const button = document.createElement('button');
-        button.className = 'button';
-        button.innerText = `${levelName.toUpperCase()}`;
+
         button.onclick = () => {
           this.changeLevel(levelName);
         };
         appContainer.appendChild(button);
-      });
+    
+      //****************************************** */    
+      button.className = 'pushable';
+    
+      // Cria o span para a sombra
+      const shadow = document.createElement('span');
+      shadow.className = 'shadow';
+  
+      // Cria o span para a borda
+      const edge = document.createElement('span');
+      edge.className = 'edge';
+  
+      // Cria o span para a frente (parte visível com texto)
+      const front = document.createElement('span');
+      front.className = 'front';
+      front.textContent = `${levelName.toUpperCase()}`;
+
+
+      // Suponha que cada módulo tenha uma propriedade color em formato HSL
+      const hslColor = this.color; // Objeto { h, s, l }
+
+      const hslCor_Fraca = { h: 60, s: 96, l: 79 };
+      if(hslColor.h == hslCor_Fraca.h){
+          console.log("entrei");
+          front.style.color = "#808080"; //troca cor da fonte
+      }
+
+      const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
+
+      const gradientColors = generateGradientColors(hslColor);
+
+      // Aplicar gradiente no estilo do `.edge`
+      edge.style.background = `linear-gradient(
+          to right,
+          ${gradientColors.darker} 0%,
+          ${gradientColors.darkerCenter} 8%,
+          ${gradientColors.lighterCenter} 92%,
+          ${gradientColors.lightest} 100%
+      )`;
+      edge.style.height = '80%';
+      edge.style.marginTop = "15px";
+
+      // Aplica a cor ao front e a sombra ao shadow
+      front.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+      shadow.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+  
+      // Anexa os spans ao botão
+      button.appendChild(shadow);
+      button.appendChild(edge);
+      button.appendChild(front);
+
+
+      //****************************************** */    
+
+    });
       const b_config = document.createElement('b_config');
       b_config.className = 'button';
       b_config.innerText = 'CONFIGURAÇÃO';
