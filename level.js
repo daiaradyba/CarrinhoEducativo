@@ -1,8 +1,44 @@
 let currentStatus = "Carregando status...";  // Estado inicial
 
+var myTheme = Blockly.Theme.defineTheme('myTheme', {
+  'base': Blockly.Themes.Classic,
+  'blockStyles': {
+    "logic_blocks": {
+      "colourPrimary": "#b97a57",
+      "colourSecondary": "#874d36",
+      "colourTertiary": "#c78869"
+    },
+    "loop_blocks": {
+      "colourPrimary": "#5ba58c",
+      "colourSecondary": "#467674",
+      "colourTertiary": "#62c193"
+    },
+    // Adicione mais estilos de blocos conforme necessário
+  },
+  'categoryStyles': {
+    "list_category": {
+      "colour": "#745ba5"
+    },
+    // Adicione mais estilos de categoria conforme necessário
+  },
+  'componentStyles': {
+    'workspaceBackgroundColour': '#1e1e1e',
+    'toolboxBackgroundColour': '#1e1e1e',
+    'toolboxForegroundColour': '#fff',
+    'flyoutBackgroundColour': '#444',
+    'flyoutForegroundColour': '#ccc',
+    'flyoutOpacity': 1,
+    'scrollbarColour': '#797979',
+    'scrollbarOpacity': 1,
+    'insertionMarkerColour': '#fff',
+    'insertionMarkerOpacity': 0.3
+  }
+});
+
+
 
 class Level {
-    constructor(name, xmlWorkspaceKey, toolboxXml,app,instructionsImg) {
+    constructor(name, xmlWorkspaceKey, toolboxXml,app,instructionsImg,color) {
       this.name = name;
       this.xmlWorkspaceKey = xmlWorkspaceKey;
       this.toolboxXml = toolboxXml;
@@ -10,6 +46,7 @@ class Level {
       this.app = app;
       this.instructionsImg = instructionsImg;
       this.pollingInterval = null;  // Referência ao intervalo de polling
+      this.color = color;
     }
 
     startPollingStatus() {
@@ -60,7 +97,8 @@ class Level {
       const toolbox = document.getElementById('toolbox');
       console.log(toolbox);
       toolbox.innerHTML = this.toolboxXml;
-      this.workspace = Blockly.inject('blocklyDiv', { toolbox: toolbox });
+      
+      this.workspace = Blockly.inject('blocklyDiv', { theme: myTheme, toolbox: toolbox });
   
       // Carrega o estado anterior se disponível
       const xmlText = localStorage.getItem(this.xmlWorkspaceKey);
@@ -84,6 +122,13 @@ render(appContainer) {
 
    this.atualizaVariaveis();
 
+   const topo = document.createElement('div');
+   topo.className = 'topo';
+
+   const sensores = document.createElement('div');
+   sensores.className = 'topo';
+   
+
     // Cria o container das instruções e o botão de iniciar
     const instructionsContainer = document.createElement('div');
 
@@ -96,8 +141,53 @@ render(appContainer) {
    
     appContainer.appendChild(instructionsContainer);
     const buttonStart = document.getElementById('b_Start');
-    buttonStart.innerText = `Iniciar ${this.name}`;
-    buttonStart.className = 'button start-level-btn';
+    buttonStart.className = 'pushable';
+
+     // Cria o span para a sombra
+     const shadow = document.createElement('span');
+     shadow.className = 'shadow';
+ 
+     // Cria o span para a borda
+     const edge = document.createElement('span');
+     edge.className = 'edge';
+ 
+     // Cria o span para a frente (parte visível com texto)
+     const front = document.createElement('span');
+     front.className = 'front';
+     front.textContent = `Iniciar ${this.name}`
+
+     const hslColor = this.color; // Objeto { h, s, l }
+
+     const hslCor_Fraca = { h: 60, s: 96, l: 79 };
+     if(hslColor.h == hslCor_Fraca.h){
+         console.log("entrei");
+         front.style.color = "black"; //troca cor da fonte
+     }
+
+     const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
+
+     const gradientColors = generateGradientColors(hslColor);
+
+     // Aplicar gradiente no estilo do `.edge`
+     edge.style.background = `linear-gradient(
+         to right,
+         ${gradientColors.darker} 0%,
+         ${gradientColors.darkerCenter} 8%,
+         ${gradientColors.lighterCenter} 92%,
+         ${gradientColors.lightest} 100%
+     )`;
+     edge.style.height = '80%';
+     edge.style.marginTop = "15px";
+
+     // Aplica a cor ao front e a sombra ao shadow
+     front.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+     shadow.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+ 
+     // Anexa os spans ao botão
+     buttonStart.appendChild(shadow);
+     buttonStart.appendChild(edge);
+     buttonStart.appendChild(front);
 
   
 
@@ -108,79 +198,306 @@ render(appContainer) {
     blocklyDiv.style.display = 'none'; // Oculta inicialmente
 
     const buttonMenu = document.createElement('button');
-    buttonMenu.innerText = 'Menu';
-    buttonMenu.className = 'button';
+    buttonMenu.className = 'pushable';
     buttonMenu.style.display = 'none'; // Oculta inicialmente
 
+    
+     // Cria o span para a sombra
+     const shadow_menu = document.createElement('span');
+     shadow_menu.className = 'shadow';
+ 
+     // Cria o span para a borda
+     const edge_menu = document.createElement('span');
+     edge_menu.className = 'edge';
+ 
+     // Cria o span para a frente (parte visível com texto)
+     const front_menu = document.createElement('span');
+     front_menu.className = 'front';
+     front_menu.textContent = `Menu`
+
+
+     if(hslColor.h == hslCor_Fraca.h){
+         console.log("entrei");
+         front_menu.style.color = "black"; //troca cor da fonte
+     }
+
+     const shadowColor_menu = calculateShadowColor(hslColor); // Calcula a cor da sombra
+
+     const gradientColors_menu = generateGradientColors(hslColor);
+
+     // Aplicar gradiente no estilo do `.edge`
+     edge_menu.style.background = `linear-gradient(
+         to right,
+         ${gradientColors.darker} 0%,
+         ${gradientColors.darkerCenter} 8%,
+         ${gradientColors.lighterCenter} 92%,
+         ${gradientColors.lightest} 100%
+     )`;
+     edge_menu.style.height = '80%';
+     edge_menu.style.marginTop = "15px";
+
+     // Aplica a cor ao front e a sombra ao shadow
+     front_menu.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+     shadow_menu.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+ 
+     // Anexa os spans ao botão
+     buttonMenu.appendChild(shadow_menu);
+     buttonMenu.appendChild(edge_menu);
+     buttonMenu.appendChild(front_menu);
+
     const buttonRessetarLevel = document.createElement('button');
-    buttonRessetarLevel.innerText = 'Ressetar Level';
-    buttonRessetarLevel.className = 'button';
+    //buttonRessetarLevel.innerText = 'Ressetar Level';
+    buttonRessetarLevel.className = 'pushable';
     buttonRessetarLevel.style.display = 'none'; // Oculta inicialmente
 
+     // Cria o span para a sombra
+     const shadow_resetar = document.createElement('span');
+     shadow_resetar.className = 'shadow';
+ 
+     // Cria o span para a borda
+     const edge_resetar = document.createElement('span');
+     edge_resetar.className = 'edge';
+ 
+     // Cria o span para a frente (parte visível com texto)
+     const front_resetar = document.createElement('span');
+     front_resetar.className = 'front';
+     front_resetar.textContent = `Ressetar Level`
+
+
+     if(hslColor.h == hslCor_Fraca.h){
+         console.log("entrei");
+         front_resetar.style.color = "black"; //troca cor da fonte
+     }
+
+     const shadowColor_resetar = calculateShadowColor(hslColor); // Calcula a cor da sombra
+
+     const gradientColors_resetar = generateGradientColors(hslColor);
+
+     // Aplicar gradiente no estilo do `.edge`
+     edge_resetar.style.background = `linear-gradient(
+         to right,
+         ${gradientColors.darker} 0%,
+         ${gradientColors.darkerCenter} 8%,
+         ${gradientColors.lighterCenter} 92%,
+         ${gradientColors.lightest} 100%
+     )`;
+     edge_resetar.style.height = '80%';
+     edge_resetar.style.marginTop = "15px";
+
+     // Aplica a cor ao front e a sombra ao shadow
+     front_resetar.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+     shadow_resetar.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+ 
+     // Anexa os spans ao botão
+     buttonRessetarLevel.appendChild(shadow_resetar);
+     buttonRessetarLevel.appendChild(edge_resetar);
+     buttonRessetarLevel.appendChild(front_resetar);
+
+
+
     const showCode = document.createElement('button');
-    showCode.innerText = 'Gerar JavaScript';
-    showCode.className = 'button';
+    //showCode.innerText = 'Gerar JavaScript';
+    showCode.className = 'pushable';
     showCode.style.display = 'none'; // Oculta inicialmente
 
-    
+         // Cria o span para a sombra
+     const shadow_showCode = document.createElement('span');
+     shadow_showCode.className = 'shadow';
+ 
+     // Cria o span para a borda
+     const edge_showCode = document.createElement('span');
+     edge_showCode.className = 'edge';
+ 
+     // Cria o span para a frente (parte visível com texto)
+     const front_showCode = document.createElement('span');
+     front_showCode.className = 'front';
+     front_showCode.textContent = `Enviar Código`
+
+
+     if(hslColor.h == hslCor_Fraca.h){
+         console.log("entrei");
+         front_showCode.style.color = "black"; //troca cor da fonte
+     }
+
+
+     // Aplicar gradiente no estilo do `.edge`
+     edge_showCode.style.background = `linear-gradient(
+         to right,
+         ${gradientColors.darker} 0%,
+         ${gradientColors.darkerCenter} 8%,
+         ${gradientColors.lighterCenter} 92%,
+         ${gradientColors.lightest} 100%
+     )`;
+     edge_showCode.style.height = '80%';
+     edge_showCode.style.marginTop = "15px";
+
+     // Aplica a cor ao front e a sombra ao shadow
+     front_showCode.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+     shadow_showCode.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+ 
+     // Anexa os spans ao botão
+     showCode.appendChild(shadow_showCode);
+     showCode.appendChild(edge_showCode);
+     showCode.appendChild(front_showCode);
+
+   
     const buttonStatus = document.createElement('button');
-    buttonStatus.innerText = 'Monitorar Carrinho';
-    buttonStatus.className = 'button';
+    //buttonStatus.innerText = 'Monitorar Carrinho';
+    buttonStatus.className = 'pushable';
     buttonStatus.style.display = 'none'; // Oculta inicialmente
 
+        // Cria o span para a sombra
+        const shadow_Status = document.createElement('span');
+        shadow_Status.className = 'shadow';
+    
+        // Cria o span para a borda
+        const edge_Status = document.createElement('span');
+        edge_Status.className = 'edge';
+    
+        // Cria o span para a frente (parte visível com texto)
+        const front_Status = document.createElement('span');
+        front_Status.className = 'front';
+        front_Status.textContent = `Monitorar Carrinho`
+   
+   
+        if(hslColor.h == hslCor_Fraca.h){
+            console.log("entrei");
+            front_Status.style.color = "black"; //troca cor da fonte
+        }
+   
+   
+        // Aplicar gradiente no estilo do `.edge`
+        edge_Status.style.background = `linear-gradient(
+            to right,
+            ${gradientColors.darker} 0%,
+            ${gradientColors.darkerCenter} 8%,
+            ${gradientColors.lighterCenter} 92%,
+            ${gradientColors.lightest} 100%
+        )`;
+        edge_Status.style.height = '80%';
+        edge_Status.style.marginTop = "15px";
+   
+        // Aplica a cor ao front e a sombra ao shadow
+        front_Status.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+        shadow_Status.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+   
+    
+        // Anexa os spans ao botão
+        buttonStatus.appendChild(shadow_Status);
+        buttonStatus.appendChild(edge_Status);
+        buttonStatus.appendChild(front_Status);
+
+
     const buttonCloseStatus = document.createElement('button');
-    buttonCloseStatus.innerText = 'Fechar Monitoramento';
-    buttonCloseStatus.className = 'button';
+    //buttonCloseStatus.innerText = 'Fechar Monitoramento';
+    buttonCloseStatus.className = 'pushable';
     buttonCloseStatus.style.display = 'none'; // Oculta inicialmente
      
+    // Cria o span para a sombra
+    const shadow_CloseStatus = document.createElement('span');
+    shadow_CloseStatus.className = 'shadow';
+
+    // Cria o span para a borda
+    const edge_CloseStatus = document.createElement('span');
+    edge_CloseStatus.className = 'edge';
+
+    // Cria o span para a frente (parte visível com texto)
+    const front_CloseStatus = document.createElement('span');
+    front_CloseStatus.className = 'front';
+    front_CloseStatus.textContent = `Fechar Monitoramento`
+
+
+    if(hslColor.h == hslCor_Fraca.h){
+        console.log("entrei");
+        front_CloseStatus.style.color = "black"; //troca cor da fonte
+    }
+
+
+    // Aplicar gradiente no estilo do `.edge`
+    edge_CloseStatus.style.background = `linear-gradient(
+        to right,
+        ${gradientColors.darker} 0%,
+        ${gradientColors.darkerCenter} 8%,
+        ${gradientColors.lighterCenter} 92%,
+        ${gradientColors.lightest} 100%
+    )`;
+    edge_CloseStatus.style.height = '80%';
+    edge_CloseStatus.style.marginTop = "15px";
+
+    // Aplica a cor ao front e a sombra ao shadow
+    front_CloseStatus.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
+    shadow_CloseStatus.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+
+
+    // Anexa os spans ao botão
+    buttonCloseStatus.appendChild(shadow_CloseStatus);
+    buttonCloseStatus.appendChild(edge_CloseStatus);
+    buttonCloseStatus.appendChild(front_CloseStatus);
      
     // Elemento para mostrar o status do carrinho
      const statusDisplay = document.createElement('div');
      statusDisplay.id = 'statusDisplay';
-     statusDisplay.className = 'status-display';
-     statusDisplay.innerText = currentStatus;  // Texto inicial
+     statusDisplay.className = 'shadow__btn';
+     statusDisplay.textContent = currentStatus;  // Texto inicial
+     statusDisplay.style.setProperty('--shadow-color-font', 'black');
+     statusDisplay.style.setProperty('--shadow-color', 'white');
      statusDisplay.style.display = 'none'; // Oculta inicialmente
 
          // Elemento para mostrar o status do carrinho
      const sensor1Display = document.createElement('div');
      sensor1Display.id = 'sensor1Display';
-     sensor1Display.className = 'status-display';
-     sensor1Display.innerText = currentStatus;  // Texto inicial
+     sensor1Display.className = 'shadow__btn';
+     sensor1Display.textContent = currentStatus;  // Texto inicial
+     sensor1Display.style.setProperty('--shadow-color-font', 'black');
+     sensor1Display.style.setProperty('--shadow-color', 'white');
      sensor1Display.style.display = 'none'; // Oculta inicialmente
 
               // Elemento para mostrar o status do carrinho
      const sensor2Display = document.createElement('div');
      sensor2Display.id = 'sensor2Display';
-     sensor2Display.className = 'status-display';
-     sensor2Display.innerText = currentStatus;  // Texto inicial
+     sensor2Display.className = 'shadow__btn';
+     sensor2Display.textContent = currentStatus;  // Texto inicial
+     sensor2Display.style.setProperty('--shadow-color-font', 'black');
+     sensor2Display.style.setProperty('--shadow-color', 'white');
      sensor2Display.style.display = 'none'; // Oculta inicialmente
 
               // Elemento para mostrar o status do carrinho
      const sensor3Display = document.createElement('div');
      sensor3Display.id = 'sensor3Display';
-     sensor3Display.className = 'status-display';
-     sensor3Display.innerText = currentStatus;  // Texto inicial
+     sensor3Display.className = 'shadow__btn';
+     sensor3Display.textContent = currentStatus;  // Texto inicial
+     sensor3Display.style.setProperty('--shadow-color-font', 'black');
+     sensor3Display.style.setProperty('--shadow-color', 'white');
      sensor3Display.style.display = 'none'; // Oculta inicialmente
 
               // Elemento para mostrar o status do carrinho
      const sensor4Display = document.createElement('div');
      sensor4Display.id = 'sensor4Display';
-     sensor4Display.className = 'status-display';
-     sensor4Display.innerText = currentStatus;  // Texto inicial
+     sensor4Display.className = 'shadow__btn';
+     sensor4Display.textContent = currentStatus;  // Texto inicial
+     sensor4Display.style.setProperty('--shadow-color-font', 'black');
+     sensor4Display.style.setProperty('--shadow-color', 'white');
      sensor4Display.style.display = 'none'; // Oculta inicialmente
 
               // Elemento para mostrar o status do carrinho
      const sensor5Display = document.createElement('div');
      sensor5Display.id = 'sensor5Display';
-     sensor5Display.className = 'status-display';
-     sensor5Display.innerText = currentStatus;  // Texto inicial
+     sensor5Display.className = 'shadow__btn';
+     sensor5Display.textContent = currentStatus;  // Texto inicial
+     sensor5Display.style.setProperty('--shadow-color-font', 'black');
+     sensor5Display.style.setProperty('--shadow-color', 'white');
      sensor5Display.style.display = 'none'; // Oculta inicialmente
 
               // Elemento para mostrar o status do carrinho
      const sensor6Display = document.createElement('div');
      sensor6Display.id = 'sensor6Display';
-     sensor6Display.className = 'status-display';
-     sensor6Display.innerText = currentStatus;  // Texto inicial
+     sensor6Display.className = 'shadow__btn';
+     sensor6Display.textContent = currentStatus;  // Texto inicial
+     sensor6Display.style.setProperty('--shadow-color-font', 'black');
+     sensor6Display.style.setProperty('--shadow-color', 'white');
      sensor6Display.style.display = 'none'; // Oculta inicialmente
 
 
@@ -214,6 +531,7 @@ render(appContainer) {
     
     buttonMenu.onclick = () => {
         this.stopPollingStatus();
+        appContainer.innerHTML = '';
         this.app.changeLevel('menu');
     };
 
@@ -243,19 +561,30 @@ render(appContainer) {
 
     this.stopPollingStatus();
 };
+
+
     appContainer.appendChild(blocklyDiv);
-    appContainer.appendChild(buttonMenu);
-    appContainer.appendChild(buttonRessetarLevel);
-    appContainer.appendChild(showCode);
-    appContainer.appendChild(buttonStatus);
-    appContainer.appendChild(buttonCloseStatus);
+
+    topo.appendChild(buttonMenu);
+    topo.appendChild(buttonRessetarLevel);
+    topo.appendChild(showCode);
+    topo.appendChild(buttonStatus);
+    topo.appendChild(buttonCloseStatus);
+
+    appContainer.appendChild(topo);
+
+  
     appContainer.appendChild(statusDisplay);
-    appContainer.appendChild(sensor1Display);
-    appContainer.appendChild(sensor2Display);
-    appContainer.appendChild(sensor3Display);
-    appContainer.appendChild(sensor4Display);
-    appContainer.appendChild(sensor5Display);
-    appContainer.appendChild(sensor6Display);
+
+    sensores.appendChild(sensor1Display);
+    sensores.appendChild(sensor2Display);
+    sensores.appendChild(sensor3Display);
+    sensores.appendChild(sensor4Display);
+    sensores.appendChild(sensor5Display);
+    sensores.appendChild(sensor6Display);
+
+    appContainer.appendChild(sensores);
+
     appContainer.appendChild(blocklyDiv);
     appContainer.appendChild(toolbox);
 

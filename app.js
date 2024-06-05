@@ -44,9 +44,11 @@ Aqui eu nao tava voltando  o menu para menu
     */
   
 renderMenu(appContainer) {
+  console.log("Entrei Menu")
       // Limpa o conteúdo atual
       //appContainer.innerHTML = `<h1>${this.nameModulo}</h1>`;
-        const topo = document.createElement('div');
+      appContainer.innerHTML = '';
+      const topo = document.createElement('div');
         topo.className = 'topo';
         
         const titulo = document.createElement('button');
@@ -389,6 +391,7 @@ updateVariable(direction, degree, value) {
     render() {
       const appContainer = document.getElementById('app');
       if (this.currentLevelName === 'menu') {
+        console.log("Render Menu")
         this.renderMenu(appContainer);
       }
       if(this.currentLevelName === 'config'){
