@@ -256,3 +256,46 @@ html, body {
     transition-duration: 0.3s;
   }
   
+  /*                  */
+  .shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color:var(--shadow-color-font);
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+  }
+  
+  .shadow__btn {
+    background: var(--shadow-color);
+    box-shadow: 0 0 25px var(--shadow-color);
+  }
+  
+  .shadow__btn:hover {
+    box-shadow: 0 0 5px var(--shadow-color),
+                0 0 25px var(--shadow-color),
+                0 0 50px var(--shadow-color),
+                0 0 100px var(--shadow-color);
+  }
+
+
+  .topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centraliza verticalmente */
+    width: 100%; /* Ajuste conforme necessário */
+    padding: 10px; /* Ajuste conforme necessário */
+  }
+  
+  .topo .titulo {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .topo .return {
+    flex-grow: 0; /* Não cresce, mantém o tamanho do conteúdo */
+  }

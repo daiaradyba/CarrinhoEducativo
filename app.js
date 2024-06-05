@@ -45,7 +45,15 @@ Aqui eu nao tava voltando  o menu para menu
   
 renderMenu(appContainer) {
       // Limpa o conteúdo atual
-      appContainer.innerHTML = `<h1>${this.nameModulo}</h1>`;
+      //appContainer.innerHTML = `<h1>${this.nameModulo}</h1>`;
+        const topo = document.createElement('div');
+        topo.className = 'topo';
+        
+        const titulo = document.createElement('button');
+        titulo.className = 'shadow__btn';
+        titulo.textContent = this.nameModulo;
+        titulo.style.setProperty('--shadow-color', `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`);
+     
 
           // Botão para retornar ao menu de módulos
         const b_r_mod = document.createElement('button');
@@ -71,13 +79,20 @@ renderMenu(appContainer) {
         if(this.color.h == hslCor_Fraca.h){
           b_r_mod.style.setProperty('--before-text-color', '#808080');
           b_r_mod.style.setProperty('--svgIcon-fill-color', '#808080');
+          titulo.style.setProperty('--shadow-color-font',  '#808080');
+      
         }
         else{
           b_r_mod.style.setProperty('--before-text-color', 'white');
           b_r_mod.style.setProperty('--svgIcon-fill-color', 'white');
+          titulo.style.setProperty('--shadow-color-font',  'white');
         }
 
-        appContainer.appendChild(b_r_mod);
+        topo.appendChild(b_r_mod);
+        topo.appendChild(titulo);
+        
+        appContainer.appendChild(topo);
+
         b_r_mod.onclick = () => {
         // Garanta que appModulos está acessível aqui
         if (typeof appModulos !== 'undefined') {
