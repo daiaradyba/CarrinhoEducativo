@@ -52,7 +52,8 @@ renderMenu(appContainer) {
         const titulo = document.createElement('button');
         titulo.className = 'shadow__btn';
         titulo.textContent = this.nameModulo;
-        titulo.style.setProperty('--shadow-color', `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`);
+        titulo.style.setProperty('--shadow-color-font', 'black');
+        titulo.style.setProperty('--shadow-color', 'white');
      
 
           // Botão para retornar ao menu de módulos
@@ -77,15 +78,15 @@ renderMenu(appContainer) {
 
         const hslCor_Fraca = { h: 60, s: 96, l: 79 };
         if(this.color.h == hslCor_Fraca.h){
-          b_r_mod.style.setProperty('--before-text-color', '#808080');
-          b_r_mod.style.setProperty('--svgIcon-fill-color', '#808080');
-          titulo.style.setProperty('--shadow-color-font',  '#808080');
+          b_r_mod.style.setProperty('--before-text-color', 'black');
+          b_r_mod.style.setProperty('--svgIcon-fill-color', 'black');
+          
       
         }
         else{
           b_r_mod.style.setProperty('--before-text-color', 'white');
           b_r_mod.style.setProperty('--svgIcon-fill-color', 'white');
-          titulo.style.setProperty('--shadow-color-font',  'white');
+        
         }
 
         topo.appendChild(b_r_mod);
@@ -135,7 +136,7 @@ renderMenu(appContainer) {
       const hslCor_Fraca = { h: 60, s: 96, l: 79 };
       if(hslColor.h == hslCor_Fraca.h){
           console.log("entrei");
-          front.style.color = "#808080"; //troca cor da fonte
+          front.style.color = "black"; //troca cor da fonte
       }
 
       const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra

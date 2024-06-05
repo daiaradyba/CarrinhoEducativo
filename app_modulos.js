@@ -85,7 +85,7 @@ class App_Modulos {
         const hslCor_Fraca = { h: 60, s: 96, l: 79 };
         if(hslColor.h == hslCor_Fraca.h){
             console.log("entrei");
-            front.style.color = "#808080"; //troca cor da fonte
+            front.style.color = "black"; //troca cor da fonte
         }
 
         const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
@@ -131,6 +131,14 @@ class App_Modulos {
 
     renderModules(appContainer) {
         appContainer.innerHTML = '';
+        const titulo = document.createElement('button');
+        titulo.className = 'shadow__btn';
+        titulo.textContent = 'SELECIONE UM MÓDULO';
+        titulo.style.setProperty('--shadow-color', 'white');
+
+        appContainer.appendChild(titulo);
+ 
+
         Object.keys(this.modules).forEach(moduleName => {
             const module = this.modules[moduleName];
             // Cria o elemento button
@@ -157,7 +165,7 @@ class App_Modulos {
             const hslCor_Fraca = { h: 60, s: 96, l: 79 };
             if(hslColor.h == hslCor_Fraca.h){
                 console.log("entrei");
-                front.style.color = "#808080"; //troca cor da fonte
+                front.style.color = "black"; //troca cor da fonte
             }
 
             const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
