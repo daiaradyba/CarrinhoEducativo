@@ -242,7 +242,7 @@ html, body {
   .return::before {
     position: absolute;
     bottom: -20px;
-    content: "Voltar ao Menu";
+    content: "Voltar";
     color: var(--before-text-color);
     /* transition-duration: .3s; */
     font-size: 0px;
@@ -286,17 +286,22 @@ html, body {
   .topo {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Centraliza verticalmente */
-    width: 100%; /* Ajuste conforme necessário */
-    padding: 10px; /* Ajuste conforme necessário */
+    align-items: center;
+    width: 100%;
+    padding: 10px;
   }
   
-  .topo .titulo {
-    flex-grow: 1;
-    text-align: center;
-  }
-  
-  .topo .return {
-    flex-grow: 0; /* Não cresce, mantém o tamanho do conteúdo */
+  @media (max-width: 600px) { /* Para telas menores que 600px */
+    .topo {
+      padding: 5px; /* Menor padding */
+      display:contents;
+      font-size: 0.8em; /* Tamanho de fonte reduzido */
+      gap: 10 px;
+    }
+    .topo .button .return .pushable { /* Supondo que você tem botões ou títulos com essas classes */
+      padding: 50px 10px; /* Reduz o tamanho do padding nos botões */
+      font-size: 0.8em; /* Reduz o tamanho da fonte */
+      width: 10 px;
+    }
   }
 

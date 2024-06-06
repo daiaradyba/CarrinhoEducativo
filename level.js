@@ -22,15 +22,15 @@ var myTheme = Blockly.Theme.defineTheme('myTheme', {
     // Adicione mais estilos de categoria conforme necessário
   },
   'componentStyles': {
-    'workspaceBackgroundColour': '#1e1e1e',
-    'toolboxBackgroundColour': '#1e1e1e',
+    'workspaceBackgroundColour': '#ffffff',
+    'toolboxBackgroundColour': '#000',
     'toolboxForegroundColour': '#fff',
     'flyoutBackgroundColour': '#444',
     'flyoutForegroundColour': '#ccc',
     'flyoutOpacity': 1,
     'scrollbarColour': '#797979',
     'scrollbarOpacity': 1,
-    'insertionMarkerColour': '#fff',
+    'insertionMarkerColour': '#000',
     'insertionMarkerOpacity': 0.3
   }
 });
@@ -198,10 +198,38 @@ render(appContainer) {
     blocklyDiv.style.display = 'none'; // Oculta inicialmente
 
     const buttonMenu = document.createElement('button');
-    buttonMenu.className = 'pushable';
+    buttonMenu.className = 'return';
     buttonMenu.style.display = 'none'; // Oculta inicialmente
 
-    
+     // Cria o elemento SVG
+     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+     svg.setAttribute('viewBox', '0 0 384 512');
+     svg.classList.add('svgIcon');
+
+     // Cria o elemento path para o SVG
+     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+     path.setAttribute('d', 'M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z');
+
+     // Adiciona o path ao SVG
+     svg.appendChild(path);
+
+     buttonMenu.appendChild(svg);
+
+     buttonMenu.style.backgroundColor = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
+
+     const hslCor_Fracaa = { h: 60, s: 96, l: 79 };
+     if(this.color.h == hslCor_Fracaa.h){
+      buttonMenu.style.setProperty('--before-text-color', 'black');
+      buttonMenu.style.setProperty('--svgIcon-fill-color', 'black');
+       
+   
+     }
+     else{
+      buttonMenu.style.setProperty('--before-text-color', 'white');
+      buttonMenu.style.setProperty('--svgIcon-fill-color', 'white');
+     
+     }
+
      // Cria o span para a sombra
      const shadow_menu = document.createElement('span');
      shadow_menu.className = 'shadow';
@@ -240,11 +268,6 @@ render(appContainer) {
      front_menu.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
      shadow_menu.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
 
- 
-     // Anexa os spans ao botão
-     buttonMenu.appendChild(shadow_menu);
-     buttonMenu.appendChild(edge_menu);
-     buttonMenu.appendChild(front_menu);
 
     const buttonRessetarLevel = document.createElement('button');
     //buttonRessetarLevel.innerText = 'Ressetar Level';
@@ -597,7 +620,7 @@ render(appContainer) {
        
         instructionsContainer.style.display = 'none'; // Oculta as instruções
         blocklyDiv.style.display = 'block'; // Mostra Blockly
-        buttonMenu.style.display = 'inline-block'; // Mostra Menu
+        buttonMenu.style.display = 'flex'; // Mostra Menu
         buttonRessetarLevel.style.display = 'inline-block'; // Mostra Reset
         showCode.style.display = 'inline-block'; // Mostra Show Code
         buttonStatus.style.display = 'inline-block'; // Mostra Show Code
