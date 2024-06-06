@@ -147,7 +147,7 @@ Blockly.Blocks['frente'] = {
       this.appendValueInput("valor_frente")
           .setCheck("Number")
           .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Ir para frenteee por");
+          .appendField("Ir para frente (segundos)");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -160,7 +160,7 @@ Blockly.Blocks['frente'] = {
       this.appendValueInput("valor_tras")
           .setCheck("Number")
           .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Ir para traaas por");
+          .appendField("Ir para trás por (segundos)");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);

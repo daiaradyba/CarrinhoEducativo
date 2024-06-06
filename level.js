@@ -87,6 +87,7 @@ class Level {
           'workspaceBackgroundColour': cor_fundo_blocky,
           'toolboxBackgroundColour': '#fff',
           'toolboxForegroundColour': '#000',
+          'toolboxForegroundFont': 'Arial',
           'flyoutBackgroundColour': '#444',
           'flyoutForegroundColour': '#ccc',
           'flyoutOpacity': 1,
