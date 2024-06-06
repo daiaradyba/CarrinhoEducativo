@@ -49,14 +49,16 @@ class App_Modulos {
     render(moduleName) {
         const appContainer = document.getElementById('app');
         appContainer.innerHTML = '';
+        cor_fundo_blocky = `hsl(${this.modules[moduleName].color.h}, ${this.modules[moduleName].color.s}%, ${this.modules[moduleName].color.l}%)`;
+
 
         const instructionsContainer = document.createElement('div');
 
         instructionsContainer.className = 'instructions-container';
-        instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start">Start Level</button><img src="${this.instructionsImg[moduleName]}" alt="Instructions" class="instructions-img">`;
+        instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start"></button><img src="${this.instructionsImg[moduleName]}" alt="Instructions" class="instructions-img">`;
     
-    
-    
+      
+        document.body.style.backgroundColor = cor_fundo_blocky;
         // Adiciona o container de instruções e o botão ao appContainer
        
         appContainer.appendChild(instructionsContainer);
@@ -85,39 +87,42 @@ class App_Modulos {
         const hslCor_Fraca = { h: 60, s: 96, l: 79 };
         const hslCor_Fraca2 = { h: 288, s: 96, l: 87 };
 
+        const cinza = {h:0, s:0, l:94};
+
         if(hslColor.h == hslCor_Fraca.h ||hslColor.h ==hslCor_Fraca2.h){
             console.log("entrei");
             front.style.color = "black"; //troca cor da fonte
         }
 
-        const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
+     const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
+     const shadowColorCinza = calculateShadowColor(cinza);
+     const gradientColors = generateGradientColors(hslColor);
+     const gradientColorsCinza = generateGradientColors(cinza);
 
-        const gradientColors = generateGradientColors(hslColor);
+     // Aplicar gradiente no estilo do `.edge`
+     edge.style.background = `linear-gradient(
+         to right,
+         ${gradientColorsCinza.darker} 0%,
+         ${gradientColorsCinza.darkerCenter} 8%,
+         ${gradientColorsCinza.lighterCenter} 92%,
+         ${gradientColorsCinza.lightest} 100%
+     )`;
+     edge.style.height = '80%';
+     edge.style.marginTop = "15px";
 
-        // Aplicar gradiente no estilo do `.edge`
-        edge.style.background = `linear-gradient(
-            to right,
-            ${gradientColors.darker} 0%,
-            ${gradientColors.darkerCenter} 8%,
-            ${gradientColors.lighterCenter} 92%,
-            ${gradientColors.lightest} 100%
-        )`;
-        edge.style.height = '80%';
-        edge.style.marginTop = "15px";
-
-        // Aplica a cor ao front e a sombra ao shadow
-        front.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
-        shadow.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+     // Aplica a cor ao front e a sombra ao shadow
+     front.style.backgroundColor = `hsl(${cinza.h}, ${cinza.s}%, ${cinza.l}%)`;
+     shadow.style.background = `hsl(${shadowColorCinza.h}, ${shadowColorCinza.s}%, ${shadowColorCinza.l}%)`;
 
     
         // Anexa os spans ao botão
-        buttonStart.appendChild(shadow);
+       // buttonStart.appendChild(shadow);
         buttonStart.appendChild(edge);
         buttonStart.appendChild(front);
 
 
         buttonStart.onclick = () => {
-       
+          document.body.style.backgroundColor = "white";
             instructionsContainer.style.display = 'none'; // Oculta as instruções
             if (!this.currentModuleName) {
                 this.renderModules(appContainer);

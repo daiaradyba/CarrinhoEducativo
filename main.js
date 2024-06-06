@@ -293,7 +293,7 @@ app_modulo6.addLevel(mod6_1);
 database = firebase.database();
 
 // Adiciona apps de módulos ao app de módulos
-appModulos.addModule("LEDs", app_modulo1,'assets/M_LED.jpeg',colors.modulo1);
+appModulos.addModule("LEDs", app_modulo1,'assets/M_LED.jpg',colors.modulo1);
 appModulos.addModule("Motores", app_modulo2,'1.png',colors.modulo2);
 appModulos.addModule("Sensores", app_modulo3,'3.png',colors.modulo3);
 appModulos.addModule("PWM", app_modulo4,'3.png',colors.modulo4);
