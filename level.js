@@ -284,7 +284,9 @@ render(appContainer) {
      buttonMenu.style.backgroundColor = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
 
      const hslCor_Fracaa = { h: 60, s: 96, l: 79 };
-     if(this.color.h == hslCor_Fracaa.h){
+     const hslCor_Fraca2a = { h: 288, s: 96, l: 87 };
+
+     if(this.color.h == hslCor_Fracaa.h|| this.color.h == hslCor_Fraca2a.h){
       buttonMenu.style.setProperty('--before-text-color', 'black');
       buttonMenu.style.setProperty('--svgIcon-fill-color', 'black');
        
@@ -309,8 +311,9 @@ render(appContainer) {
      front_menu.className = 'front';
      front_menu.textContent = `Menu`
 
+     const hslCor_Fraca2 = { h: 288, s: 96, l: 87 };
 
-     if(hslColor.h == hslCor_Fraca.h){
+     if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca.h){
          console.log("entrei");
          front_menu.style.color = "black"; //troca cor da fonte
      }
@@ -354,7 +357,7 @@ render(appContainer) {
      front_resetar.textContent = `Ressetar Level`
 
 
-     if(hslColor.h == hslCor_Fraca.h){
+     if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
          console.log("entrei");
          front_resetar.style.color = "black"; //troca cor da fonte
      }
@@ -405,7 +408,7 @@ render(appContainer) {
      front_showCode.textContent = `Enviar Código`
 
 
-     if(hslColor.h == hslCor_Fraca.h){
+     if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
          console.log("entrei");
          front_showCode.style.color = "black"; //troca cor da fonte
      }
@@ -452,7 +455,7 @@ render(appContainer) {
         front_Status.textContent = `Monitorar Carrinho`
    
    
-        if(hslColor.h == hslCor_Fraca.h){
+        if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
             console.log("entrei");
             front_Status.style.color = "black"; //troca cor da fonte
         }
@@ -499,7 +502,7 @@ render(appContainer) {
     front_CloseStatus.textContent = `Fechar Monitoramento`
 
 
-    if(hslColor.h == hslCor_Fraca.h){
+    if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
         console.log("entrei");
         front_CloseStatus.style.color = "black"; //troca cor da fonte
     }

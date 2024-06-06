@@ -4,7 +4,7 @@ const appModulos = new App_Modulos(); //Camada mais abstrata. contem todo os mod
 
 // Definição de cores em HSL
 const colors = {
-  modulo1: { h: 277, s: 79, l: 81 },
+  modulo1: { h: 288, s: 96, l: 87 },
   modulo2: { h: 60, s: 96, l: 79 },
   modulo3: { h: 214, s: 84, l: 74 },
   modulo4: { h: 338, s: 100, l: 81 },
@@ -47,7 +47,7 @@ const mod1_2 = new Level(
   'blocklyWorkspace_mod1_2',
   '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
   app_modulo1,
-  '2.png',
+  'assets/M_LED_F2.jpg',
   colors.modulo1
   );
 
@@ -56,7 +56,7 @@ const mod1_3 = new Level(
     'blocklyWorkspace_mod1_3',
     '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
     app_modulo1,
-    '3.png',
+    'assets/M_LED_F3.jpg',
     colors.modulo1
     );  
 
@@ -65,7 +65,7 @@ const mod1_4 = new Level(
       'blocklyWorkspace_mod1_4',
       '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block></category>',
       app_modulo1,
-      '3.png',
+      'assets/M_LED_F4.jpg',
       colors.modulo1
       );  
 
@@ -74,7 +74,7 @@ const mod1_5 = new Level(
     'blocklyWorkspace_mod1_5',
     '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block></category>',
     app_modulo1,
-    '3.png',
+    'assets/M_LED_F5.jpg',
     colors.modulo1
     );  
 

@@ -79,7 +79,8 @@ renderMenu(appContainer) {
         b_r_mod.style.backgroundColor = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
 
         const hslCor_Fraca = { h: 60, s: 96, l: 79 };
-        if(this.color.h == hslCor_Fraca.h){
+        const hslCor_Fraca2 = { h: 288, s: 96, l: 87 };
+        if(this.color.h == hslCor_Fraca.h||this.color.h ==hslCor_Fraca2.h){
           b_r_mod.style.setProperty('--before-text-color', 'black');
           b_r_mod.style.setProperty('--svgIcon-fill-color', 'black');
           
@@ -136,7 +137,7 @@ renderMenu(appContainer) {
       const hslColor = this.color; // Objeto { h, s, l }
 
       const hslCor_Fraca = { h: 60, s: 96, l: 79 };
-      if(hslColor.h == hslCor_Fraca.h){
+      if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
           console.log("entrei");
           front.style.color = "black"; //troca cor da fonte
       }

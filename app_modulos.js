@@ -83,7 +83,9 @@ class App_Modulos {
         const hslColor = this.modules[moduleName].color; // Objeto { h, s, l }
 
         const hslCor_Fraca = { h: 60, s: 96, l: 79 };
-        if(hslColor.h == hslCor_Fraca.h){
+        const hslCor_Fraca2 = { h: 288, s: 96, l: 87 };
+
+        if(hslColor.h == hslCor_Fraca.h ||hslColor.h ==hslCor_Fraca2.h){
             console.log("entrei");
             front.style.color = "black"; //troca cor da fonte
         }
@@ -163,7 +165,9 @@ class App_Modulos {
             const hslColor = this.modules[moduleName].color; // Objeto { h, s, l }
 
             const hslCor_Fraca = { h: 60, s: 96, l: 79 };
-            if(hslColor.h == hslCor_Fraca.h){
+            const hslCor_Fraca2 = { h: 288, s: 96, l: 87 };
+
+            if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
                 console.log("entrei");
                 front.style.color = "black"; //troca cor da fonte
             }
