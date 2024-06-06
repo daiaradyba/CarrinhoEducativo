@@ -1,39 +1,6 @@
 let currentStatus = "Carregando status...";  // Estado inicial
+let cor_fundo_blocky;
 
-var myTheme = Blockly.Theme.defineTheme('myTheme', {
-  'base': Blockly.Themes.Classic,
-  'blockStyles': {
-    "logic_blocks": {
-      "colourPrimary": "#b97a57",
-      "colourSecondary": "#874d36",
-      "colourTertiary": "#c78869"
-    },
-    "loop_blocks": {
-      "colourPrimary": "#5ba58c",
-      "colourSecondary": "#467674",
-      "colourTertiary": "#62c193"
-    },
-    // Adicione mais estilos de blocos conforme necessário
-  },
-  'categoryStyles': {
-    "list_category": {
-      "colour": "#745ba5"
-    },
-    // Adicione mais estilos de categoria conforme necessário
-  },
-  'componentStyles': {
-    'workspaceBackgroundColour': '#ffffff',
-    'toolboxBackgroundColour': '#000',
-    'toolboxForegroundColour': '#fff',
-    'flyoutBackgroundColour': '#444',
-    'flyoutForegroundColour': '#ccc',
-    'flyoutOpacity': 1,
-    'scrollbarColour': '#797979',
-    'scrollbarOpacity': 1,
-    'insertionMarkerColour': '#000',
-    'insertionMarkerOpacity': 0.3
-  }
-});
 
 
 
@@ -47,6 +14,7 @@ class Level {
       this.instructionsImg = instructionsImg;
       this.pollingInterval = null;  // Referência ao intervalo de polling
       this.color = color;
+    
     }
 
     startPollingStatus() {
@@ -94,6 +62,41 @@ class Level {
   
     // Método para inicializar o Blockly workspace
     initBlockly() {
+      var myTheme = Blockly.Theme.defineTheme('myTheme', {
+        'base': Blockly.Themes.Classic,
+        'blockStyles': {
+          "logic_blocks": {
+            "colourPrimary": "#b97a57",
+            "colourSecondary": "#874d36",
+            "colourTertiary": "#c78869"
+          },
+          "loop_blocks": {
+            "colourPrimary": "#5ba58c",
+            "colourSecondary": "#467674",
+            "colourTertiary": "#62c193"
+          },
+          // Adicione mais estilos de blocos conforme necessário
+        },
+        'categoryStyles': {
+          "list_category": {
+            "colour": "#745ba5"
+          },
+          // Adicione mais estilos de categoria conforme necessário
+        },
+        'componentStyles': {
+          'workspaceBackgroundColour': cor_fundo_blocky,
+          'toolboxBackgroundColour': '#fff',
+          'toolboxForegroundColour': '#000',
+          'flyoutBackgroundColour': '#444',
+          'flyoutForegroundColour': '#ccc',
+          'flyoutOpacity': 1,
+          'scrollbarColour': '#797979',
+          'scrollbarOpacity': 1,
+          'insertionMarkerColour': '#000',
+          'insertionMarkerOpacity': 0.3
+        }
+      });
+      
       const toolbox = document.getElementById('toolbox');
       console.log(toolbox);
       toolbox.innerHTML = this.toolboxXml;
@@ -119,6 +122,8 @@ class Level {
 render(appContainer) {
     // Primeiro, limpa o conteúdo atual do appContainer
     appContainer.innerHTML = '';
+
+      cor_fundo_blocky = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
 
    this.atualizaVariaveis();
 
