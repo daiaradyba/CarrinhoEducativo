@@ -156,7 +156,7 @@ render(appContainer) {
     // Criar o título
     const successTitleDiv = document.createElement('div');
     successTitleDiv.className = 'success__title';
-    successTitleDiv.textContent = 'Código enviado. Aperte o botão de reset no carrinho';
+    successTitleDiv.textContent = 'Código enviado. Pressione reset no carrinho';
 
     // Criar o botão de fechar
     const successCloseDiv = document.createElement('div');
