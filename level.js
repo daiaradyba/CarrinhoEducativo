@@ -126,7 +126,7 @@ render(appContainer) {
     // Primeiro, limpa o conteúdo atual do appContainer
     appContainer.innerHTML = '';
 
-      cor_fundo_blocky = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
+    cor_fundo_blocky = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
     appContainer.style.backgroundColor = cor_fundo_blocky;
     document.body.style.backgroundColor = cor_fundo_blocky;
 
@@ -607,7 +607,7 @@ render(appContainer) {
       topo_alert.style.display = 'none';
       await delay(300); // Espera por 0,5 segundos
       const code = Blockly.JavaScript.workspaceToCode(this.workspace);
-
+      console.log(code);
       topo_alert.style.display = 'flex';
         database.ref("/").update({
             code: code
