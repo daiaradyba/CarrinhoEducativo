@@ -49,7 +49,7 @@ renderMenu(appContainer) {
       //appContainer.innerHTML = `<h1>${this.nameModulo}</h1>`;
       appContainer.innerHTML = '';
       const topo = document.createElement('div');
-        topo.className = 'topo';
+        topo.className = 'topo_fases';
         
         const titulo = document.createElement('button');
         titulo.className = 'shadow__btn';

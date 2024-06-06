@@ -291,6 +291,13 @@ html, body {
     padding: 10px;
   }
   
+  .topo_fases {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+  }
 
   @keyframes slideDown {
     from {
