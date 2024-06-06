@@ -59,6 +59,7 @@ class App_Modulos {
     
       
         document.body.style.backgroundColor = cor_fundo_blocky;
+        appContainer.style.backgroundColor = cor_fundo_blocky;
         // Adiciona o container de instruções e o botão ao appContainer
        
         appContainer.appendChild(instructionsContainer);
@@ -123,7 +124,8 @@ class App_Modulos {
 
         buttonStart.onclick = () => {
           document.body.style.backgroundColor = "white";
-            instructionsContainer.style.display = 'none'; // Oculta as instruções
+          appContainer.style.backgroundColor = "white";
+          instructionsContainer.style.display = 'none'; // Oculta as instruções
             if (!this.currentModuleName) {
                 this.renderModules(appContainer);
             }
