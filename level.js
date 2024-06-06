@@ -1,7 +1,9 @@
 let currentStatus = "Carregando status...";  // Estado inicial
 let cor_fundo_blocky;
 
-
+function delay(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
 
 
 class Level {
@@ -597,13 +599,16 @@ render(appContainer) {
 
     // Agora você pode anexar esses elementos ao appContainer ou a qualquer outro contêiner relevante
    
+    
 
     // Define os eventos dos botões
-    showCode.onclick = () => {
-        const code = Blockly.JavaScript.workspaceToCode(this.workspace);
-        console.log(code); // Para depuração
+    showCode.onclick = async () => {
+     
+      topo_alert.style.display = 'none';
+      await delay(300); // Espera por 0,5 segundos
+      const code = Blockly.JavaScript.workspaceToCode(this.workspace);
 
-        topo_alert.style.display = 'flex';
+      topo_alert.style.display = 'flex';
         database.ref("/").update({
             code: code
           });
