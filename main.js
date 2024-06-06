@@ -39,7 +39,7 @@ const mod1_1 = new Level(
   'blocklyWorkspace_mod1_1',
   '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="math_number"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
   app_modulo1,
-  'assets/M_LED_F1.jpeg',
+  'assets/M_LED_F1.jpg',
   colors.modulo1
 );
 const mod1_2 = new Level(

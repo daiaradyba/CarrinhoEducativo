@@ -125,6 +125,8 @@ render(appContainer) {
     appContainer.innerHTML = '';
 
       cor_fundo_blocky = `hsl(${this.color.h}, ${this.color.s}%, ${this.color.l}%)`;
+    appContainer.style.backgroundColor = cor_fundo_blocky;
+    document.body.style.backgroundColor = cor_fundo_blocky;
 
    this.atualizaVariaveis();
 
@@ -139,7 +141,7 @@ render(appContainer) {
     const instructionsContainer = document.createElement('div');
 
     instructionsContainer.className = 'instructions-container';
-    instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start">Start Level</button><img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">`;
+    instructionsContainer.innerHTML = ` <button className="button start-level-btn" id="b_Start"></button><img src="${this.instructionsImg}" alt="Instructions" class="instructions-img">`;
 
 
 
@@ -191,7 +193,7 @@ render(appContainer) {
 
  
      // Anexa os spans ao botão
-     buttonStart.appendChild(shadow);
+     //buttonStart.appendChild(shadow);
      buttonStart.appendChild(edge);
      buttonStart.appendChild(front);
 
@@ -624,6 +626,8 @@ render(appContainer) {
     // e mostrar os outros elementos
     buttonStart.onclick = () => {
        
+      document.body.style.backgroundColor = "white";
+      appContainer.style.backgroundColor = "white";
         instructionsContainer.style.display = 'none'; // Oculta as instruções
         blocklyDiv.style.display = 'block'; // Mostra Blockly
         buttonMenu.style.display = 'flex'; // Mostra Menu
