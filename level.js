@@ -165,31 +165,31 @@ render(appContainer) {
      front.textContent = `Iniciar ${this.name}`
 
      const hslColor = this.color; // Objeto { h, s, l }
-
+     const cinza = {h:0, s:0, l:94};
      const hslCor_Fraca = { h: 60, s: 96, l: 79 };
-     if(hslColor.h == hslCor_Fraca.h){
-         console.log("entrei");
-         front.style.color = "black"; //troca cor da fonte
-     }
+
+     front.style.color = "black"; //troca cor da fonte
+
 
      const shadowColor = calculateShadowColor(hslColor); // Calcula a cor da sombra
-
+     const shadowColorCinza = calculateShadowColor(cinza);
      const gradientColors = generateGradientColors(hslColor);
+     const gradientColorsCinza = generateGradientColors(cinza);
 
      // Aplicar gradiente no estilo do `.edge`
      edge.style.background = `linear-gradient(
          to right,
-         ${gradientColors.darker} 0%,
-         ${gradientColors.darkerCenter} 8%,
-         ${gradientColors.lighterCenter} 92%,
-         ${gradientColors.lightest} 100%
+         ${gradientColorsCinza.darker} 0%,
+         ${gradientColorsCinza.darkerCenter} 8%,
+         ${gradientColorsCinza.lighterCenter} 92%,
+         ${gradientColorsCinza.lightest} 100%
      )`;
      edge.style.height = '80%';
      edge.style.marginTop = "15px";
 
      // Aplica a cor ao front e a sombra ao shadow
-     front.style.backgroundColor = `hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`;
-     shadow.style.background = `hsl(${shadowColor.h}, ${shadowColor.s}%, ${shadowColor.l}%)`;
+     front.style.backgroundColor = `hsl(${cinza.h}, ${cinza.s}%, ${cinza.l}%)`;
+     shadow.style.background = `hsl(${shadowColorCinza.h}, ${shadowColorCinza.s}%, ${shadowColorCinza.l}%)`;
 
  
      // Anexa os spans ao botão
