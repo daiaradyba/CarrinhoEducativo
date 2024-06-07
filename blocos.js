@@ -147,7 +147,7 @@ Blockly.Blocks['frente'] = {
       this.appendValueInput("valor_frente")
           .setCheck("Number")
           .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Ir para frente (segundos)");
+          .appendField("Ir para frente (milisegundos)");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -160,7 +160,7 @@ Blockly.Blocks['frente'] = {
       this.appendValueInput("valor_tras")
           .setCheck("Number")
           .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField("Ir para trás por (segundos)");
+          .appendField("Ir para trás por (milisegundos)");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -171,9 +171,10 @@ Blockly.Blocks['frente'] = {
 
   Blockly.Blocks['esquerda'] = {
     init: function() {
-      this.appendDummyInput()
-          .appendField("Esquerda")
-          .appendField(new Blockly.FieldDropdown([["0°","0"], ["45°","45"],["90°","90"],["180°","180"],["270º","270"],["360°","360"]]), "valor_esquerda");
+      this.appendValueInput("valor_esquerda")
+          .setCheck("Number")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField("Ir para esquerda por (milisegundos)");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -645,11 +646,11 @@ Blockly.Blocks['frente'] = {
 
 
   javascript.javascriptGenerator.forBlock['esquerda'] = function(block, generator) {
-    var degrees = block.getFieldValue('valor_esquerda');
-    var time_ms;
+    var time_ms = generator.valueToCode(block, 'valor_esquerda', javascript.Order.ATOMIC);
+
     //console.log("v_e_0 = " + app.v_e_0);
 
-    switch(degrees){
+   /* switch(degrees){
       case '0':
         time_ms = app_modulo1.v_e_0;
       break;
@@ -668,7 +669,7 @@ Blockly.Blocks['frente'] = {
       case '360':
         time_ms = app_modulo1.v_e_360;
       break;
-    }
+    }*/
     var code = 'esquerda;'+time_ms+'\n';
     return code;
   };
