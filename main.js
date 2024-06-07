@@ -180,6 +180,16 @@ const mod3_4 = new Level(
     colors.modulo3
     );  
 
+const mod3_5 = new Level(
+    'Fase 5',
+    'blocklyWorkspace_mod3_5',
+    '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="SENSOR" colour="#ff9ec2"><block type="sensor_proximidade_choice"></block><block type="sensor_black_choice"></block></category><category name="CONDICIONAIS" colour="#2A9D8F"><block type="se"></block><block type="while"></block></category><category name="MOTOR" colour="#ff9ec2"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
+    app_modulo3,
+    '3.png',
+    colors.modulo3
+    );  
+
+
 
 
 // Adiciona os níveis ao aplicativo
@@ -187,6 +197,7 @@ app_modulo3.addLevel(mod3_1);
 app_modulo3.addLevel(mod3_2);
 app_modulo3.addLevel(mod3_3);
 app_modulo3.addLevel(mod3_4);
+app_modulo3.addLevel(mod3_5);
 
 
 //----------------------------------------------
