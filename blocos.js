@@ -648,24 +648,25 @@ Blockly.Blocks['frente'] = {
     var degrees = block.getFieldValue('valor_esquerda');
     var time_ms;
     //console.log("v_e_0 = " + app.v_e_0);
+
     switch(degrees){
       case '0':
-        time_ms = app.v_e_0;
+        time_ms = app_modulo1.v_e_0;
       break;
       case '45':
-        time_ms = app.v_e_45;
+        time_ms = app_modulo1.v_e_45;
       break;
       case '90':
-        time_ms = app.v_e_90;
+        time_ms = app_modulo1.v_e_90;
       break;
       case '180':
-        time_ms = app.v_e_180;
+        time_ms = app_modulo1.v_e_180;
       break;
       case '270':
-        time_ms = app.v_e_270;
+        time_ms = app_modulo1.v_e_270;
       break;
       case '360':
-        time_ms = app.v_e_360;
+        time_ms = app_modulo1.v_e_360;
       break;
     }
     var code = 'esquerda;'+time_ms+'\n';
@@ -678,22 +679,22 @@ Blockly.Blocks['frente'] = {
     //console.log("v_e_0 = " + app.v_e_0);
     switch(degrees){
       case '0':
-        time_ms = app.v_d_0;
+        time_ms = app_modulo1.v_d_0;
       break;
       case '45':
-        time_ms = app.v_d_45;
+        time_ms = app_modulo1.v_d_45;
       break;
       case '90':
-        time_ms = app.v_d_90;
+        time_ms = app_modulo1.v_d_90;
       break;
       case '180':
-        time_ms = app.v_d_180;
+        time_ms = app_modulo1.v_d_180;
       break;
       case '270':
-        time_ms = app.v_d_270;
+        time_ms = app_modulo1.v_d_270;
       break;
       case '360':
-        time_ms = app.v_d_360;
+        time_ms = app_modulo1.v_d_360;
       break;
     }
     var code = 'direita;'+time_ms+'\n';

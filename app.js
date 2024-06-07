@@ -465,6 +465,7 @@ updateVariable(direction, degree, value) {
 }
 
 App.prototype.atualizaVariaveis_off = async function() {
+  console.log("entrei variaveis off");
   const variaveis = ['v_e_0', 'v_e_45', 'v_e_90', 'v_e_180', 'v_e_270', 'v_e_360', 'v_d_0', 'v_d_45', 'v_d_90', 'v_d_180', 'v_d_270', 'v_d_360'];
   const promises = variaveis.map(variavel => 
     firebase.database().ref(`/variaveis/${variavel}`).once('value').then(snapshot => {
