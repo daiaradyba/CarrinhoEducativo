@@ -93,7 +93,7 @@ const mod2_1 = new Level(
   'blocklyWorkspace_mod2_1',
   '<category name="Motor" colour="#E76F51"><block type="frente"></block><block type="math_number"></block></category>',
   app_modulo2,
-  '1.png',
+  'assets/M_MOTORES_F1.jpg',
   colors.modulo2
 );
 const mod2_2 = new Level(
@@ -101,7 +101,7 @@ const mod2_2 = new Level(
   'blocklyWorkspace_mod2_2',
   '<category name="Motor" colour="#E76F51"><block type="frente"></block><block type="tras"></block><block type="math_number"></block></category>',
   app_modulo2,
-  '2.png',
+  'assets/M_MOTORES_F2.jpg',
   colors.modulo2
   );
 
@@ -110,7 +110,7 @@ const mod2_3 = new Level(
     'blocklyWorkspace_mod2_3',
     '<category name="Motor" colour="#E76F51"><block type="frente"></block><block type="tras"></block><block type="math_number"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block></category>',
     app_modulo2,
-    '3.png',
+    'assets/M_MOTORES_F3.jpg',
     colors.modulo2
     );  
 
@@ -119,7 +119,7 @@ const mod2_4 = new Level(
     'blocklyWorkspace_mod2_4',
     '<category name="Motor" colour="#E76F51"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block></category>',
     app_modulo2,
-    '3.png',
+    'assets/M_MOTORES_F4.jpg',
     colors.modulo2
     );  
 
@@ -128,7 +128,7 @@ const mod2_5 = new Level(
     'blocklyWorkspace_mod2_5',
     '<category name="Motor" colour="#E76F51"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block></category>',
     app_modulo2,
-    '3.png',
+    'assets/M_MOTORES_F5.jpg',
     colors.modulo2
     );  
 
@@ -305,7 +305,7 @@ database = firebase.database();
 
 // Adiciona apps de módulos ao app de módulos
 appModulos.addModule("LEDs", app_modulo1,'assets/M_LED.jpg',colors.modulo1);
-appModulos.addModule("Motores", app_modulo2,'1.png',colors.modulo2);
+appModulos.addModule("Motores", app_modulo2,'assets/M_MOTORES.jpg',colors.modulo2);
 appModulos.addModule("Sensores", app_modulo3,'3.png',colors.modulo3);
 appModulos.addModule("PWM", app_modulo4,'3.png',colors.modulo4);
 appModulos.addModule("Buzzer", app_modulo5,'3.png',colors.modulo5);
