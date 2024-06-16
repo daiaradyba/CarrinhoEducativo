@@ -185,9 +185,10 @@ Blockly.Blocks['frente'] = {
 
   Blockly.Blocks['direita'] = {
     init: function() {
-      this.appendDummyInput()
-        .appendField("Direita")
-        .appendField(new Blockly.FieldDropdown([["0°","0"], ["45°","45"],["90°","90"],["180°","180"],["270º","270"],["360°","360"]]), "valor_direita");
+      this.appendValueInput("valor_direita")
+          .setCheck("Number")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField("Ir para direita por (milisegundos)");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
@@ -675,10 +676,9 @@ Blockly.Blocks['frente'] = {
   };
 
   javascript.javascriptGenerator.forBlock['direita'] = function(block, generator) {
-    var degrees = block.getFieldValue('valor_direita');
-    var time_ms;
+    var time_ms = generator.valueToCode(block, 'valor_direita', javascript.Order.ATOMIC);
     //console.log("v_e_0 = " + app.v_e_0);
-    switch(degrees){
+    /*switch(degrees){
       case '0':
         time_ms = app_modulo1.v_d_0;
       break;
@@ -697,7 +697,7 @@ Blockly.Blocks['frente'] = {
       case '360':
         time_ms = app_modulo1.v_d_360;
       break;
-    }
+    }*/
     var code = 'direita;'+time_ms+'\n';
     return code;
   };

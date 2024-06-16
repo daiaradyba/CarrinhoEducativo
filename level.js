@@ -405,7 +405,7 @@ render(appContainer) {
      // Cria o span para a frente (parte visível com texto)
      const front_showCode = document.createElement('span');
      front_showCode.className = 'front';
-     front_showCode.textContent = `Enviar Código`
+     front_showCode.textContent = `Enviar Algoritmo`
 
 
      if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){
