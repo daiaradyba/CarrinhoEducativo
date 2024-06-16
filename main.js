@@ -150,7 +150,7 @@ const mod3_1 = new Level(
   'blocklyWorkspace_mod3_1',
   '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="SENSOR" colour="#ff9ec2"><block type="sensor_proximidade_choice"></block><block type="sensor_black_choice"></block></category><category name="CONDICIONAIS" colour="#2A9D8F"><block type="se"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
   app_modulo3,
-  '1.png',
+  'assets/M_SENSORES_F1.jpg',
   colors.modulo3
 );
 const mod3_2 = new Level(
@@ -158,7 +158,7 @@ const mod3_2 = new Level(
   'blocklyWorkspace_mod3_2',
   '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="SENSOR" colour="#ff9ec2"><block type="sensor_proximidade_choice"></block><block type="sensor_black_choice"></block></category><category name="CONDICIONAIS" colour="#2A9D8F"><block type="se"></block><block type="while"></block></category><category name="MOTOR" colour="#ff9ec2"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
   app_modulo3,
-  '2.png',
+  'assets/M_SENSORES_F2.jpg',
   colors.modulo3
   );
 
@@ -167,7 +167,7 @@ const mod3_3 = new Level(
     'blocklyWorkspace_mod3_3',
     '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="SENSOR" colour="#ff9ec2"><block type="sensor_proximidade_choice"></block><block type="sensor_black_choice"></block></category><category name="CONDICIONAIS" colour="#2A9D8F"><block type="se"></block><block type="while"></block></category><category name="MOTOR" colour="#ff9ec2"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
     app_modulo3,
-    '3.png',
+    'assets/M_SENSORES_F3.jpg',
     colors.modulo3
     );  
 
@@ -176,7 +176,7 @@ const mod3_4 = new Level(
     'blocklyWorkspace_mod3_4',
     '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="SENSOR" colour="#ff9ec2"><block type="sensor_proximidade_choice"></block><block type="sensor_black_choice"></block></category><category name="CONDICIONAIS" colour="#2A9D8F"><block type="se"></block><block type="while"></block></category><category name="MOTOR" colour="#ff9ec2"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
     app_modulo3,
-    '3.png',
+    'assets/M_SENSORES_F4.jpg',
     colors.modulo3
     );  
 
@@ -185,7 +185,7 @@ const mod3_5 = new Level(
     'blocklyWorkspace_mod3_5',
     '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="SENSOR" colour="#ff9ec2"><block type="sensor_proximidade_choice"></block><block type="sensor_black_choice"></block></category><category name="CONDICIONAIS" colour="#2A9D8F"><block type="se"></block><block type="while"></block></category><category name="MOTOR" colour="#ff9ec2"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><!-- Continue adicionando categorias e blocos conforme necessário -->',
     app_modulo3,
-    '3.png',
+    'assets/M_SENSORES_F5.jpg',
     colors.modulo3
     );  
 
@@ -306,7 +306,7 @@ database = firebase.database();
 // Adiciona apps de módulos ao app de módulos
 appModulos.addModule("LEDs", app_modulo1,'assets/M_LED.jpg',colors.modulo1);
 appModulos.addModule("Motores", app_modulo2,'assets/M_MOTORES.jpg',colors.modulo2);
-appModulos.addModule("Sensores", app_modulo3,'3.png',colors.modulo3);
+appModulos.addModule("Sensores", app_modulo3,'assets/M_SENSORES.jpg',colors.modulo3);
 appModulos.addModule("PWM", app_modulo4,'3.png',colors.modulo4);
 appModulos.addModule("Buzzer", app_modulo5,'3.png',colors.modulo5);
 appModulos.addModule("Desafio", app_modulo6,'3.png',colors.modulo1);
