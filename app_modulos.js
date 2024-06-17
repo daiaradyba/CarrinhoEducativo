@@ -80,7 +80,7 @@ class App_Modulos {
         const front = document.createElement('span');
         front.className = 'front';
         front.textContent = 'Iniciar Módulo '+moduleName;  // Definindo o texto como o nome do módulo
-
+        front.style.color = "black"; //troca cor da fonte
 
         // Suponha que cada módulo tenha uma propriedade color em formato HSL
         const hslColor = this.modules[moduleName].color; // Objeto { h, s, l }

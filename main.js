@@ -208,7 +208,7 @@ const mod4_1 = new Level(
   'blocklyWorkspace_mod4_1',
   '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="PWM" colour="#ff9ec2"><block type="pwm"></block></category>',
   app_modulo4,
-  '1.png',
+  'assets/M_PWM_F1.jpg',
   colors.modulo4
 );
 const mod4_2 = new Level(
@@ -216,7 +216,7 @@ const mod4_2 = new Level(
   'blocklyWorkspace_mod4_2',
   '<category name="LED" colour="#d8a9f5"><block type="ligarled"></block><block type="desligarled"></block><block type="math_number"></block><block type="esperar"></block></category><category name="PWM" colour="#ff9ec2"><block type="pwm"></block></category><category name="MOTOR" colour="#2A9D8F"><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block></category>',
   app_modulo4,
-  '2.png',
+  'assets/M_PWM_F1.jpg',
   colors.modulo4
   );
 
@@ -235,7 +235,7 @@ const mod5_1 = new Level(
   'blocklyWorkspace_mod5_1',
   '<category name="BUZZER" colour="#F33D49"><block type="duracao_nota"></block><block type="buzzer_nota"></block></category>',
   app_modulo5,
-  '1.png',
+  'assets/M_BUZZER_F1.jpg',
   colors.modulo5
 );
 
@@ -244,7 +244,7 @@ const mod5_2 = new Level(
   'blocklyWorkspace_mod5_2',
   '<category name="BUZZER" colour="#F33D49"><block type="duracao_nota"></block><block type="buzzer_nota"></block></category>',
   app_modulo5,
-  '2.png',
+  'assets/M_BUZZER_F2.jpg',
   colors.modulo5
   );
 
@@ -253,7 +253,7 @@ const mod5_3 = new Level(
   'blocklyWorkspace_mod5_3',
   '<category name="BUZZER" colour="#F33D49"><block type="duracao_nota"></block><block type="buzzer_nota"></block><block type="buzzer_melodia"></block></category>',
   app_modulo5,
-  '2.png',
+  'assets/M_BUZZER_F3.jpg',
   colors.modulo5
   );
 
@@ -262,7 +262,7 @@ const mod5_4 = new Level(
   'blocklyWorkspace_mod5_4',
   '<category name="BUZZER" colour="#F33D49"><block type="duracao_nota"></block><block type="buzzer_nota"></block><block type="buzzer_melodia"></block></category><category name="Repetir" colour="#ff9ec2"><block type="for"></block><block type="math_number"></block><block type="esperar"></block></category>',
   app_modulo5,
-  '2.png',
+  'assets/M_BUZZER_F4.jpg',
   colors.modulo5
   );
 
@@ -285,7 +285,7 @@ const mod6_1 = new Level(
   'blocklyWorkspace_mod6_1',
   '<category name="TODOS OS BLOCOS" colour="#F33D49"><block type="for"></block><block type="duracao_nota"></block><block type="buzzer_nota"></block><block type="buzzer_melodia"></block><block type="pwm"></block><block type="sensor_black_choice"></block><block type="sensor_proximidade_choice"></block><block type="monitorar"></block><block type="valor"></block><block type="diferente"></block><block type="maior"></block><block type="menor"></block><block type="igual"></block><block type="sensor_choice"></block><block type="status_choice"></block><block type="led_choice"></block><block type="se"></block><block type="while"></block><block type="ler"></block><block type="ligarled"></block><block type="desligarled"></block><block type="frente"></block><block type="tras"></block><block type="esquerda"></block><block type="direita"></block><block type="math_number"></block>',
   app_modulo6,
-  '1.png',
+  'assets/M_DESAFIO_F1.jpg',
   colors.modulo1
 );
 
@@ -307,9 +307,9 @@ database = firebase.database();
 appModulos.addModule("LEDs", app_modulo1,'assets/M_LED.jpg',colors.modulo1);
 appModulos.addModule("Motores", app_modulo2,'assets/M_MOTORES.jpg',colors.modulo2);
 appModulos.addModule("Sensores", app_modulo3,'assets/M_SENSORES.jpg',colors.modulo3);
-appModulos.addModule("PWM", app_modulo4,'3.png',colors.modulo4);
-appModulos.addModule("Buzzer", app_modulo5,'3.png',colors.modulo5);
-appModulos.addModule("Desafio", app_modulo6,'3.png',colors.modulo1);
+appModulos.addModule("PWM", app_modulo4,'assets/M_PWM.jpg',colors.modulo4);
+appModulos.addModule("Buzzer", app_modulo5,'assets/M_BUZZER.jpg',colors.modulo5);
+appModulos.addModule("Desafio", app_modulo6,'assets/M_DESAFIO.jpg',colors.modulo1);
 
 async function inicializarApp() {
   await app_modulo1.atualizaVariaveis_off();
