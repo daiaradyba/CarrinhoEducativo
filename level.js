@@ -354,7 +354,7 @@ render(appContainer) {
      // Cria o span para a frente (parte visível com texto)
      const front_resetar = document.createElement('span');
      front_resetar.className = 'front';
-     front_resetar.textContent = `Ressetar Level`
+     front_resetar.textContent = `Resetar Level`
 
 
      if(hslColor.h == hslCor_Fraca.h || hslColor.h == hslCor_Fraca2.h){

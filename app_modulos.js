@@ -233,7 +233,7 @@ class App_Modulos {
          configButton.onclick = () => {
              this.renderConfig(appContainer);
          };
-         appContainer.appendChild(configButton);
+        // appContainer.appendChild(configButton);
     }
 
     renderConfig(appContainer) {
